@@ -9,6 +9,7 @@ import { ShopModule } from './shop/shop.module';
 import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ErrorModule } from './error/error.module';
     ShopModule,
     PuntenModule,
     LoginModule,
-    ErrorModule
+    ErrorModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
