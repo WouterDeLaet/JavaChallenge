@@ -9,11 +9,13 @@ import { ShopModule } from './shop/shop.module';
 import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
+import { RewardFormComponent } from './reward-form/reward-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    RewardFormComponent
   ],
   imports: [
     BrowserModule,
