@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../interfaces/user';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -6,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ShopComponent implements OnInit {
-  email : any;
-  constructor() { }
+  user: User;
+  test: any;
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.email = localStorage.getItem("email");
-    alert(this.email);
+    this.authService.userData$.subscribe( data => this.user = data);
+    this.test = localStorage.getItem('user');
   }
 
 }
