@@ -10,6 +10,7 @@ import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ShopModule,
     PuntenModule,
     LoginModule,
-    ErrorModule
+    ErrorModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
