@@ -9,11 +9,13 @@ import { ShopModule } from './shop/shop.module';
 import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
