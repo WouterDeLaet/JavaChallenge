@@ -8,7 +8,9 @@ import { catchError, share, tap } from 'rxjs/operators';
 })
 export class ApixuService {
 
-  readonly ROOT_URL = 'http://localhost:8081/users/login';
+  readonly ROOT_URL = 'http://localhost:8081/';
+  readonly LOGIN_USER = 'users/login';
+  readonly OPDRACHTEN = 'opdrachtTypes/';
 
   constructor(private http: HttpClient) {
   }
@@ -17,7 +19,21 @@ export class ApixuService {
     const body = new HttpParams()
       .set('email', data.email)
       .set('wachtwoord', data.password);
-    return this.http.post(this.ROOT_URL, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded'}})
+    return this.http.post(this.ROOT_URL + this.LOGIN_USER, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded'}})
+      .pipe(
+        tap(req => console.log('get-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
+  getOpdrachten(token): Observable<any> {
+    return this.http.get(this.ROOT_URL + this.OPDRACHTEN, {headers: {'X-Auth-Token' : token}})
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(

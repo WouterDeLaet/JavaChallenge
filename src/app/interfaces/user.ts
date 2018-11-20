@@ -4,4 +4,5 @@ export class User {
   naam: string;
   adminNiveau: number;
   _id: string;
+  token: string;
 }
