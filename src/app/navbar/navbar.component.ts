@@ -10,11 +10,15 @@ import {User} from '../interfaces/user';
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
-  isLoggedIn$: Observable<boolean>;
+  user: User;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.authService.userData$.subscribe( data =>
+      {
+        this.user = data
+      }
+      );
   }
 }

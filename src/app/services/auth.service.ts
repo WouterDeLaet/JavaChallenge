@@ -18,40 +18,44 @@ export class AuthService {
   }
 
   constructor(private router: Router, private apixu: ApixuService) {
+    if (localStorage.getItem('user')) {
+      console.log(JSON.parse(localStorage.getItem('user')));
+      this.setUserData(JSON.parse(localStorage.getItem('user')));
+    }
   }
 
-  login(data: any, isValid: string) {
+  login(data: any) {
     //if(data.email == email uit de data base && data.password == password uit de database)
 
     this.usr$ = this.apixu.postLogin(data);
     this.usr$.subscribe(value => {
         if (value != null) {
           this.loggedIn.next(true);
-          console.log(value);
-          localStorage.setItem('email', value.toString());
+          this.setUserData(value);
+          localStorage.setItem("user", JSON.stringify(value));
           this.router.navigate(['/shop']);
         }
         else {
           alert('Fout email of wachtwoord.');
         }
-      })
-    ;
-
+      });
   }
 
   logout() {
-    localStorage.removeItem('email');
-    this.loggedIn.next(false);
+    localStorage.removeItem("user");
+    this.setUserData(null);
     this.router.navigate(['/login']);
   }
 
   setUserData(user) {
-    if (user !== null && user.emailVerified) {
+    if (user !== null) {
       this.userData$.next({
-        password: user.password,
         email: user.email,
+        naam: user.naam,
+        wachtwoord: user.wachtwoord,
+        adminNiveau: user.adminNiveau,
+        _id: user._id,
       });
-      this.router.navigate(['/chat']);
     } else {
       this.userData$.next(null);
     }

@@ -9,7 +9,9 @@ import { ShopModule } from './shop/shop.module';
 import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
+
 import { RewardFormComponent } from './reward-form/reward-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -17,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
   declarations: [
     AppComponent,
     NavbarComponent,
-    RewardFormComponent
+    RewardFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

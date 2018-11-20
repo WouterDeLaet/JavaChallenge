@@ -1,4 +1,7 @@
 export class User {
   email: string;
-  password: string;
+  wachtwoord: string;
+  naam: string;
+  adminNiveau: number;
+  _id: string;
 }

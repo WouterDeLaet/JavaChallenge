@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../interfaces/user';
+import {AuthService} from '../services/auth.service';
+import {RewardService} from '../services/reward.service';
+import {Reward} from '../interfaces/reward';
 
 @Component({
   selector: 'app-shop',
@@ -6,12 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ShopComponent implements OnInit {
-  email : any;
-  constructor() { }
+
+  user: User;
+  rewards: Reward;
+
+  constructor(public authService: AuthService, public rewardService: RewardService) { }
 
   ngOnInit() {
-    this.email = localStorage.getItem("email");
-    alert(this.email);
-  }
 
+    const rewardData$ = this.rewardService.getReward(); // query
+    rewardData$.subscribe(data => {
+      console.log(data);
+      this.rewards = data;
+    });
+  }
 }

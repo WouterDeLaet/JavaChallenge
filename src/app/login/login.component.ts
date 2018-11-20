@@ -16,18 +16,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('user')) {
+      this.loginData = JSON.parse(localStorage.getItem('user'));
+    }
   }
 
   login(data: any, isValid: string) {
     if (isValid) {
-      this.authService.login(data, isValid);
+      this.authService.login(data);
     }
     else {
       alert('Het email of password is niet juist');
     }
-  }
-
-  logout() {
-    this.authService.logout();
   }
 }
