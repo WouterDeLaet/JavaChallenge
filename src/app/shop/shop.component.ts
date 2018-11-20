@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ShopComponent implements OnInit {
-
+  email : any;
   constructor() { }
 
   ngOnInit() {
+    this.email = localStorage.getItem("email");
+    alert(this.email);
   }
 
 }

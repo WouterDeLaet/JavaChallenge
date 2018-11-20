@@ -10,6 +10,8 @@ import { PuntenModule } from './punten/punten.module';
 import { LoginModule } from './login/login.module';
 import { ErrorModule } from './error/error.module';
 import { RewardFormComponent } from './reward-form/reward-form.component';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { RewardFormComponent } from './reward-form/reward-form.component';
     ShopModule,
     PuntenModule,
     LoginModule,
-    ErrorModule
+    ErrorModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
