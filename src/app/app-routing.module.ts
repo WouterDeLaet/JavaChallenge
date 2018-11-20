@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'error', component: ErrorComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: '', redirectTo: 'shop', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: 'error'},
 ];
 

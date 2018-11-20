@@ -7,10 +7,11 @@ import {Reward} from '../interfaces/reward';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styles: []
+  styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
 
+  public isCollapsed = true;
   user: User;
   rewards: Reward;
 
@@ -25,3 +26,4 @@ export class ShopComponent implements OnInit {
     });
   }
 }
+

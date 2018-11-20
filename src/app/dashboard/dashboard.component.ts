@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../interfaces/user';
+import {AuthService} from '../services/auth.service';
+import {RewardService} from '../services/reward.service';
+import {Reward} from '../interfaces/reward';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  rewards: Reward;
+
+  constructor(public authService: AuthService, public rewardService: RewardService) { }
 
   ngOnInit() {
-  }
 
+    const rewardData$ = this.rewardService.getReward(); // query
+    rewardData$.subscribe(data => {
+      console.log(data);
+
+
+      data.sort(function(a, b) {
+        var dateA = new Date(a.release), dateB = new Date(b.release);
+        return dateA - dateB;
+      });
+
+      this.rewards = data;
+    });
+  }
 }
