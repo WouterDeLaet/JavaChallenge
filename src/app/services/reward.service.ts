@@ -16,8 +16,55 @@ export class RewardService {
   getReward(): Observable<any> {
 
     return this.http.get(this.ROOT_URL + '/?orderBy=datum&orderDirection=ASC')
+
       .pipe(
         tap(req => console.log('get-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
+  addReward(data, user): Observable<any> {
+    const nu = new Date();
+    const body = new HttpParams()
+      .set('naam', data.naam)
+      .set('beschrijving', data.beschrijving)
+      .set('aantalPunten', data.aantalPunten)
+      .set('fotoCode', data.fotoCode)
+      .set('datum', nu.toDateString());
+
+    return this.http.post(this.ROOT_URL, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
+  editReward(data, user): Observable<any> {
+    const nu = new Date();
+    const body = new HttpParams()
+      .set('naam', data.naam)
+      .set('beschrijving', data.beschrijving)
+      .set('aantalPunten', data.aantalPunten)
+      .set('fotoCode', data.fotoCode)
+      .set('datum', nu.toDateString());
+
+    return this.http.put(this.ROOT_URL + '/' + data._id, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('post-request', req)),
         catchError(
           (error) => {
             console.log(error);
