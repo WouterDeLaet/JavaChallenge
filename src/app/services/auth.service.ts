@@ -12,7 +12,7 @@ export class AuthService {
   private usr$ = new Observable();
   private loggedIn = new BehaviorSubject<boolean>(false);
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
-  tokenData$: BehaviorSubject<Token> = new BehaviorSubject(null);
+  userArray: any;
 
   constructor(private router: Router, private apixu: ApixuService) {
     if (localStorage.getItem('user')) {
@@ -28,8 +28,9 @@ export class AuthService {
     this.usr$ = this.apixu.postLogin(data);
     this.usr$.subscribe(value => {
         if (value != null) {
+          this.userArray = value;
           this.loggedIn.next(true);
-          this.setUserData(value.user, value.token);
+          this.setUserData(this.userArray.user, this.userArray.token);
           localStorage.setItem("user", JSON.stringify(value));
           this.router.navigate(['/dashboard']);
         }
