@@ -6,13 +6,14 @@
   <div class="form-group">
     <label for="opdracht">Welke opdracht heb je verwezenlijkt?</label>
     <br>
-    <select id="opdracht" required name="titel"  #myOpdracht="ngModel" [(ngModel)]="opdrachten.naam">
+    <select *ngIf="opdrachtTypes" id="opdracht" required name="titel"  #myOpdracht="ngModel" [(ngModel)]="opdrachtTypes.naam">
       <option value="" disabled selected>Selecteer een opdracht</option>
       <option *ngFor="let c of opdrachtTypes" [ngValue]="c">{{c.naam}}</option>
       <option value="andere">Andere</option>
     </select>
   </div>
 
+  <div *ngIf="opdrachten">
   <div class="form-group">
     <label for="beschrijving">Geef even een korte beschrijving van deze opdracht!</label>
     <input type="text" id="beschrijving" class="form-control"
@@ -43,4 +44,5 @@
   <button type="submit" class="btn btn-primary" (click)="addOpdracht(registratieForm.value)">
     Bevestigen
   </button>
+  </div>
 </form>

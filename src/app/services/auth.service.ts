@@ -3,7 +3,6 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../interfaces/user';
 import {Router} from '@angular/router';
 import {ApixuService} from './apixu.service';
-import {Token} from '../interfaces/token';
 
 @Injectable({
   providedIn: 'root'
