@@ -13,8 +13,8 @@ export class RewardService {
 
   constructor(private http: HttpClient) { }
 
-  getReward(): Observable<any> {
-    return this.http.get(this.ROOT_URL)
+  getRewards(user): Observable<any> {
+    return this.http.get(this.ROOT_URL, {headers: {'x-access-token': user.token}})
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(
