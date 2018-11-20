@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, share, tap } from 'rxjs/operators';
 
@@ -14,11 +14,10 @@ export class ApixuService {
   }
 
   postLogin(data): Observable<any> {
-    const params = new HttpParams()
+    const body = new HttpParams()
       .set('email', data.email)
       .set('wachtwoord', data.password);
-
-    return this.http.post(this.ROOT_URL, {params})
+    return this.http.post(this.ROOT_URL, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded'}})
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(

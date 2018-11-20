@@ -27,31 +27,30 @@ export class AuthService {
     this.usr$.subscribe(value => {
         if (value != null) {
           this.loggedIn.next(true);
-          console.log(value);
-          localStorage.setItem('email', value.toString());
+          this.setUserData(value);
+          localStorage.setItem('user', JSON.stringify(value));
           this.router.navigate(['/shop']);
         }
         else {
           alert('Fout email of wachtwoord.');
         }
-      })
-    ;
-
+      });
   }
 
   logout() {
-    localStorage.removeItem('email');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
 
   setUserData(user) {
-    if (user !== null && user.emailVerified) {
+    if (user !== null) {
       this.userData$.next({
-        password: user.password,
+        wachtwoord: user.wachtwoord,
         email: user.email,
+        naam: user.naam,
+        _id: user._id,
+        adminNiveau: user.adminNiveau
       });
-      this.router.navigate(['/chat']);
     } else {
       this.userData$.next(null);
     }
