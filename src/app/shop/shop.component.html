@@ -1,3 +1,14 @@
+<div class="row card-group">
+  <div class="col-4"  *ngFor="let reward of rewards">
+    <div class="card rounded shadow-sm p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h5 class="card-title">{{reward.naam}}</h5>
+        <p class="card-text">{{reward.punten}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <p>{{user.naam}}</p>
 <p>{{user.email}}</p>
 <p>{{user.wachtwoord}}</p>
@@ -5,3 +16,4 @@
 <p>{{user.adminNiveau}}</p>
 <br />
 <h1>{{test.toString()}}</h1>
+

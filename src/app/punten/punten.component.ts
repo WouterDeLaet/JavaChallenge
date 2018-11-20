@@ -21,7 +21,7 @@ export class PuntenComponent implements OnInit {
     id: '3',
     titel: 'Bijwonen van een conferentie ',
     punten: '8'
-  }]
+  }];
 
   opdracht = {
     opdracht: '',
