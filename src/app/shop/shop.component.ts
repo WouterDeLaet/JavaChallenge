@@ -7,9 +7,7 @@ import {Reward} from '../interfaces/reward';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styles: ['.capitalize {\n' +
-  '   text-transform: capitalize;\n' +
-  '}']
+  styles: []
 })
 export class ShopComponent implements OnInit {
 
