@@ -8,7 +8,7 @@ import {AuthService} from '../services/auth.service';
   styles: []
 })
 export class ShopComponent implements OnInit {
-  
+
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
