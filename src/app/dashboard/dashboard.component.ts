@@ -21,13 +21,6 @@ export class DashboardComponent implements OnInit {
     const rewardData$ = this.rewardService.getReward(); // query
     rewardData$.subscribe(data => {
       console.log(data);
-
-
-      data.sort(function(a, b) {
-        var dateA = new Date(a.release), dateB = new Date(b.release);
-        return dateA - dateB;
-      });
-
       this.rewards = data;
     });
   }

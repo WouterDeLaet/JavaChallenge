@@ -15,13 +15,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RewardFormModule } from './reward-form/reward-form.module';
 import { FormsModule } from '@angular/forms';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     RewardFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ export class RewardService {
 
   getReward(): Observable<any> {
 
-    return this.http.get(this.ROOT_URL)
+    return this.http.get(this.ROOT_URL + '/?orderBy=datum&orderDirection=ASC')
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(
