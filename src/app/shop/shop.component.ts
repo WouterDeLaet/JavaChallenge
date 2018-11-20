@@ -27,8 +27,6 @@ export class ShopComponent implements OnInit {
   constructor(public authService: AuthService, public rewardService: RewardService) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( data => this.user = data);
-    this.test = localStorage.getItem('user');
 
     const rewardData$ = this.rewardService.getReward(); // query
     rewardData$.subscribe(data => {
