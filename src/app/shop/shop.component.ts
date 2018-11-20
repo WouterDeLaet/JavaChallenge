@@ -36,5 +36,4 @@ export class ShopComponent implements OnInit {
       this.rewards = data;
     });
   }
-
 }

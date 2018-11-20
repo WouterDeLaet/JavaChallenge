@@ -18,9 +18,13 @@ export class AuthService {
   }
 
   constructor(private router: Router, private apixu: ApixuService) {
+    if (localStorage.getItem('user')) {
+      console.log(JSON.parse(localStorage.getItem('user')));
+      this.setUserData(JSON.parse(localStorage.getItem('user')));
+    }
   }
 
-  login(data: any, isValid: string) {
+  login(data: any) {
     //if(data.email == email uit de data base && data.password == password uit de database)
 
     this.usr$ = this.apixu.postLogin(data);
@@ -28,7 +32,7 @@ export class AuthService {
         if (value != null) {
           this.loggedIn.next(true);
           this.setUserData(value);
-          localStorage.setItem('user', JSON.stringify(value));
+          localStorage.setItem("user", JSON.stringify(value));
           this.router.navigate(['/shop']);
         }
         else {
@@ -38,18 +42,19 @@ export class AuthService {
   }
 
   logout() {
-    this.loggedIn.next(false);
+    localStorage.removeItem("user");
+    this.setUserData(null);
     this.router.navigate(['/login']);
   }
 
   setUserData(user) {
     if (user !== null) {
       this.userData$.next({
-        wachtwoord: user.wachtwoord,
         email: user.email,
         naam: user.naam,
+        wachtwoord: user.wachtwoord,
+        adminNiveau: user.adminNiveau,
         _id: user._id,
-        adminNiveau: user.adminNiveau
       });
     } else {
       this.userData$.next(null);
