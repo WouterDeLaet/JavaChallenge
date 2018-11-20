@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class RewardFormComponent implements OnInit {
-
   reward = {
     _id: '',
     naam: '',
