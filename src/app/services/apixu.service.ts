@@ -10,7 +10,7 @@ export class ApixuService {
 
   readonly ROOT_URL = 'http://localhost:8081/';
   readonly LOGIN_USER = 'users/login';
-  readonly OPDRACHTEN = 'opdrachtTypes/';
+  readonly OPDRACHTEN = 'opdrachtTypes';
 
   constructor(private http: HttpClient) {
   }
@@ -33,7 +33,7 @@ export class ApixuService {
   }
 
   getOpdrachten(token): Observable<any> {
-    return this.http.get(this.ROOT_URL + this.OPDRACHTEN, {headers: {'X-Auth-Token' : token}})
+    return this.http.get(this.ROOT_URL + this.OPDRACHTEN, {headers: {'x-access-token' : token}})
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(

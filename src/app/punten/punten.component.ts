@@ -4,7 +4,6 @@ import {OpdrachtTypes} from '../interfaces/opdracht-types';
 import {User} from '../interfaces/user';
 import {AuthService} from '../services/auth.service';
 import {Opdrachten} from '../interfaces/opdrachten';
-import {Token} from '../interfaces/token';
 
 @Component({
   selector: 'app-punten',
@@ -20,17 +19,16 @@ export class PuntenComponent implements OnInit {
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 
   ngOnInit() {
-    const opdrachten$ = this.apixuService.getOpdrachten(this.user.token);
-    opdrachten$.subscribe(data => {
-      console.log(data);
-      this.opdrachtTypes = data;
-    });
-
     this.authService.userData$.subscribe( data =>
       {
         this.user = data
       }
     );
+    const opdrachten$ = this.apixuService.getOpdrachten(this.user.token);
+    opdrachten$.subscribe(data => {
+      console.log(data);
+      this.opdrachtTypes = data;
+    });
   }
 
   addOpdracht(form) {
