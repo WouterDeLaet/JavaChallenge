@@ -8,13 +8,10 @@ import {AuthService} from '../services/auth.service';
   styles: []
 })
 export class ShopComponent implements OnInit {
-  user: User;
-  test: any;
+  
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( data => this.user = data);
-    this.test = localStorage.getItem('user');
   }
 
 }
