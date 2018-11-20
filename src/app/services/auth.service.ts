@@ -30,7 +30,7 @@ export class AuthService {
           this.userArray = value;
           this.loggedIn.next(true);
           this.setUserData(this.userArray.user, this.userArray.token);
-          localStorage.setItem("user", JSON.stringify(value));
+          localStorage.setItem('user', JSON.stringify(value));
           this.router.navigate(['/dashboard']);
         } else {
           alert('Fout email of wachtwoord.');

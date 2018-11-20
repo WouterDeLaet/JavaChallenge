@@ -30,6 +30,7 @@ export class RewardService {
   }
 
   addReward(data, user): Observable<any> {
+    console.log('add');
     const nu = new Date();
     const body = new HttpParams()
       .set('naam', data.naam)
@@ -53,13 +54,13 @@ export class RewardService {
   }
 
   editReward(data, user): Observable<any> {
-    const nu = new Date();
+    console.log('edit');
     const body = new HttpParams()
       .set('naam', data.naam)
       .set('beschrijving', data.beschrijving)
       .set('aantalPunten', data.aantalPunten)
       .set('fotoCode', data.fotoCode)
-      .set('datum', nu.toDateString());
+      .set('datum', data.datum);
 
     return this.http.put(this.ROOT_URL + '/' + data._id, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': user.token}})

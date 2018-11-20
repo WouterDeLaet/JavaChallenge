@@ -12,24 +12,35 @@
                [(ngModel)]="reward.naam">
       </div>
       <div class="form-group">
-        <label for="beschrijving">Naam:</label>
-        <textarea cols="5" rows="40" type="text" id="beschrijving" class="form-control"
+        <label for="beschrijving">Beschrijving:</label>
+        <textarea cols="5" rows="20" type="text" id="beschrijving" class="form-control"
                required
                   placeholder="Reward beschrijving"
                name="beschrijving"
                minlength=3
-               #naam="ngModel"
+               #beschrijving="ngModel"
                   [(ngModel)]="reward.beschrijving"></textarea>
       </div>
       <div class="form-group">
-        <label for="punten">Naam:</label>
-        <input type="text" id="punten" class="form-control"
+        <label for="punten">Benodigde punten om te kopen:</label>
+        <input type="number" id="punten" class="form-control"
                required
                name="punten"
-               placeholder="Reward naam"
-               minlength=3
-               #naam="ngModel"
-               [(ngModel)]="reward.naam">
+               placeholder="Reward punten"
+               #punten="ngModel"
+               [(ngModel)]="reward.aantalPunten">
+      </div>
+      <div class="form-group">
+        <label for="fotoCode">Foto URL:</label>
+        <input type="text" id="fotoCode" class="form-control"
+               name="fotoCode"
+               placeholder="Foto URL"
+               #fotoCode="ngModel"
+               [(ngModel)]="reward.fotoCode">
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary mr-2" [disabled]="f.invalid" (click)="commitReward(f.valid)">Gegevens opslagen</button>
+        <button type="button" class="btn btn-secondary mr-2">Annuleren</button>
       </div>
     </form>
   </div>

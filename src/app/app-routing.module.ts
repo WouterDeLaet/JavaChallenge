@@ -5,6 +5,7 @@ import {ShopComponent} from './shop/shop.component';
 import {ErrorComponent} from './error/error.component';
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {RewardFormComponent} from './reward-form/reward-form.component';
 
 const routes: Routes = [
   {path: 'punten', component: PuntenComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'error', component: ErrorComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'rewardForm', component: RewardFormComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'error'},
 ];
 
