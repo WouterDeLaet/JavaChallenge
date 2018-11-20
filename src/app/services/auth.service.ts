@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   login(data: any) {
-    //if(data.email == email uit de data base && data.password == password uit de database)
+    // if(data.email == email uit de data base && data.password == password uit de database)
 
     this.usr$ = this.apixu.postLogin(data);
     this.usr$.subscribe(value => {
@@ -31,17 +31,16 @@ export class AuthService {
           this.userArray = value;
           this.loggedIn.next(true);
           this.setUserData(this.userArray.user, this.userArray.token);
-          localStorage.setItem("user", JSON.stringify(value));
+          localStorage.setItem('user', JSON.stringify(value));
           this.router.navigate(['/dashboard']);
-        }
-        else {
+        } else {
           alert('Fout email of wachtwoord.');
         }
       });
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     this.setUserData(null, null);
     this.router.navigate(['/login']);
   }

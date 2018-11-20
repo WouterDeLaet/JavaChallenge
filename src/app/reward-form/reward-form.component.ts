@@ -25,14 +25,16 @@ export class RewardFormComponent implements OnInit {
   constructor(private authService: AuthService, private rewardService: RewardService ) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe(data => this.user = data);
+    this.authService.userData$.subscribe(data => {
+      this.user = data;
+    });
   }
 
 
   // Jens Sels - Toevoegen of bewerken van reward
-  commitReward() {
-    if (this.user != null && this.reward != null) {
-      if (this.reward._id == null) {
+  commitReward(isValid: any) {
+    if (this.user != null && isValid) {
+      if (this.reward._id === '') {
         this.rewardService.addReward(this.reward, this.user).subscribe(
           data => {
             console.log(data);
