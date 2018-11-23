@@ -19,9 +19,8 @@ export class PuntenComponent implements OnInit {
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( data =>
-      {
-        this.user = data
+    this.authService.userData$.subscribe( data => {
+        this.user = data;
       }
     );
     const opdrachten$ = this.apixuService.getOpdrachten(this.user.token);
