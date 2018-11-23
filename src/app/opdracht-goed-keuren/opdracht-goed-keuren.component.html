@@ -1,0 +1,7 @@
+<pre>{{opdrachten$ | json}}</pre>
+<ul *ngFor="let opdracht of opdrachten$">
+  <li>
+    {{opdracht.titel}}
+    <button (click)="opdrachtGoedkeuren(opdracht._id, opdracht.userId, opdracht.aantalPunten)">goed keuren</button>
+  </li>
+</ul>

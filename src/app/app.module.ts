@@ -17,6 +17,7 @@ import { RewardFormModule } from './reward-form/reward-form.module';
 import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { PermissionComponent } from './permission/permission.component';
+import { OpdrachtGoedKeurenModule } from './opdracht-goed-keuren/opdracht-goed-keuren.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PermissionComponent } from './permission/permission.component';
     ErrorModule,
     HttpClientModule,
     RewardFormModule,
-    FormsModule
+    FormsModule,
+    OpdrachtGoedKeurenModule
   ],
   providers: [],
   bootstrap: [AppComponent]
