@@ -27,6 +27,20 @@ export class RewardService {
       );
   }
 
+  getReward(user, id): Observable<any> {
+    return this.http.get(this.ROOT_URL + '/' + id, {headers: {'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('get-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
   addReward(data, user): Observable<any> {
     console.log('add');
     const nu = new Date();
