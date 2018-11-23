@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import {RewardService} from '../services/reward.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -22,14 +23,24 @@ export class RewardFormComponent implements OnInit {
     datum: ''
   };
 
-  constructor(private authService: AuthService, private rewardService: RewardService ) { }
+  constructor(private authService: AuthService, private rewardService: RewardService, private router: Router ) { }
 
   ngOnInit() {
+
+    // Jolien Lauwers - Nakijken van adminNiveau voor permissie
+
     this.authService.userData$.subscribe(data => {
+
+      if (this.authService.userData$.value.adminNiveau.toString() != '1') {
+        this.router.navigate(['']);
+      }
+
+      else {
       this.user = data;
+      }
+
     });
   }
-
 
   // Jens Sels - Toevoegen of bewerken van reward
   commitReward(isValid: any) {

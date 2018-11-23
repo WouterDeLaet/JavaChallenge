@@ -1,53 +1,21 @@
+<br>
 <div class="row card-group">
-  <div class="col-4"  *ngFor="let reward of rewards">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
-      <h5 class="card-header">{{reward.naam | titlecase }}</h5>
-      <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
-      <div class="card-body">
-
-        <p>{{reward.aantalPunten}}</p>
-
-        <button class="btn btn-primary col-6">Kopen!</button><br>
-
-        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="col-6">
-          <ngb-panel title="Simple">
-            <ng-template ngbPanelContent>
-              {{reward.beschrijving}}
-            </ng-template>
-          </ngb-panel>
-        </ngb-accordion>
-
-        <div id="tuut" [ngbCollapse]="isCollapsed">
-          <div class="card">
-            <div class="card-body">
-              {{reward.beschrijving}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6">
-  <div class="card" *ngFor="let reward of rewards">
-    <h5 class="card-header">{{reward.naam | titlecase }}</h5>
+  <div class="col-4" *ngFor="let reward of rewards">
+  <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
     <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
     <div class="card-body">
-      <h5 class="card-title">{{reward.aantalPunten}} punten</h5>
+      <h5 class="card-title">{{reward.naam | titlecase }}</h5>
 
-      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="col-6">
-        <ngb-panel title="Simple">
-          <ng-template ngbPanelContent>
-            {{reward.beschrijving}}
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+      <div class="btn-group d-flex" role="group">
 
-      <p class="card-text">{{reward.beschrijving}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+        <button type="button" class="card-text btn btn-primary w-100">Bestellen</button>
+        <button type="button" class="card-text btn btn-outline-secondary mr-2 w-100" placement="bottom"
+                triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
+
+      </div>
+
     </div>
   </div>
-    </div>
-  </div>
+</div>
+</div>
 

@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RewardFormModule } from './reward-form/reward-form.module';
 import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { PermissionComponent } from './permission/permission.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     NavbarComponent,
     RewardFormComponent,
     DashboardComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    PermissionComponent
   ],
   imports: [
     BrowserModule,
