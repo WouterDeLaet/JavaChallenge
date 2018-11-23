@@ -10,14 +10,14 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import {PermissionComponent} from './permission/permission.component';
 
 const routes: Routes = [
-  {path: 'punten', component: PuntenComponent},
+  {path: 'opdracht-registeren', component: PuntenComponent},
   {path: 'shop', component: ShopComponent},
   {path: 'login', component: LoginComponent},
   {path: '403', component: PermissionComponent},
   {path: '404', component: ErrorComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'dashboardadmin', component: DashboardAdminComponent},
-  {path: 'rewardForm', component: RewardFormComponent},
+  {path: 'dashboard-admin', component: DashboardAdminComponent},
+  {path: 'reward-form', component: RewardFormComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: '404'},
 

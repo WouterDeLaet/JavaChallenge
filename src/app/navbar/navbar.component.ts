@@ -6,7 +6,7 @@ import {User} from '../interfaces/user';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styles: []
+  styles: ['.username {color: var(--jstack-color-1)}']
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
