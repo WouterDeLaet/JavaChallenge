@@ -1,11 +1,21 @@
+<br>
 <div class="row card-group">
-  <div class="col-4"  *ngFor="let reward of rewards">
-    <div class="card rounded shadow-sm p-3 mb-5 bg-white rounded">
-      <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
-      <div class="card-body">
-        <h5 class="card-title">{{reward.naam}}</h5>
-        <p class="card-text">{{reward.aantalPunten}}</p>
+  <div class="col-4" *ngFor="let reward of rewards">
+  <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
+    <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
+    <div class="card-body">
+      <h5 class="card-title">{{reward.naam | titlecase }}</h5>
+
+      <div class="btn-group d-flex" role="group">
+
+        <button type="button" class="card-text btn btn-primary w-100">Bestellen</button>
+        <button type="button" class="card-text btn btn-outline-secondary mr-2 w-100" placement="bottom"
+                triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
+
       </div>
+
     </div>
   </div>
 </div>
+</div>
+

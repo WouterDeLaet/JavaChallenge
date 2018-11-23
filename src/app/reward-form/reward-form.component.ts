@@ -3,7 +3,8 @@ import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import {RewardService} from '../services/reward.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {finalize} from 'rxjs/internal/operators';
+
+
 
 
 @Component({
@@ -27,14 +28,13 @@ export class RewardFormComponent implements OnInit {
   };
 
   constructor(private authService: AuthService, private rewardService: RewardService,
-              private router: Router, private route: ActivatedRoute ) { }
+              private router: Router, private route: ActivatedRoute ) {
+
+  }
 
   ngOnInit() {
-    this.authService.userData$.subscribe(data => {
-      this.user = data;
       this.route.queryParams.subscribe(params => {
         const id = params['id'] || 0;
-        console.log(id);
         if (id !== 0) {
           this.rewardService.getReward(this.user, id).subscribe( result => {
             this.reward = result;
@@ -45,8 +45,7 @@ export class RewardFormComponent implements OnInit {
           this.loading = false;
         }
       });
-    });
-  }
+}
 
 
   // Jens Sels - Toevoegen of bewerken van reward

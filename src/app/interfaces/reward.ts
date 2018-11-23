@@ -4,4 +4,5 @@ export class Reward {
   beschrijving: string;
   aantalPunten: number;
   fotoCode: string;
+  datum: string;
 }
