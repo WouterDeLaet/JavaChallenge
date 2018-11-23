@@ -18,10 +18,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    const rewardData$ = this.rewardService.getReward(); // query
-    rewardData$.subscribe(data => {
-      console.log(data);
-      this.rewards = data;
+    this.authService.userData$.subscribe(user => {
+      this.rewardService.getRewards(user).subscribe(result => {
+        this.rewards = result;
+        console.log(result);
+      });
     });
   }
 }

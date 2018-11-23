@@ -13,9 +13,8 @@ export class RewardService {
 
   constructor(private http: HttpClient) { }
 
-  getReward(): Observable<any> {
-
-    return this.http.get(this.ROOT_URL + '/?orderBy=datum&orderDirection=ASC')
+  getRewards(user): Observable<any> {
+    return this.http.get(this.ROOT_URL + '/?orderBy=datum&orderDirection=ASC', {headers: {'x-access-token': user.token}})
 
       .pipe(
         tap(req => console.log('get-request', req)),

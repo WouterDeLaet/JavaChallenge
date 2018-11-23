@@ -18,12 +18,12 @@ export class ShopComponent implements OnInit {
   constructor(public authService: AuthService, public rewardService: RewardService) { }
 
   ngOnInit() {
-
-    const rewardData$ = this.rewardService.getReward(); // query
-    rewardData$.subscribe(data => {
-      console.log(data);
-      this.rewards = data;
+    this.authService.userData$.subscribe(user => {
+      this.rewardService.getRewards(user).subscribe(result => {
+        this.rewards = result;
+      });
     });
+
   }
 }
 
