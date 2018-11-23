@@ -12,14 +12,14 @@ import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 
 const routes: Routes = [
-  {path: 'punten', component: PuntenComponent, canActivate: [AuthGuard]},
+  {path: 'opdracht-registeren', component: PuntenComponent, canActivate: [AuthGuard]},
   {path: 'shop', component: ShopComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: '403', component: PermissionComponent},
   {path: '404', component: ErrorComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'dashboardadmin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
-  {path: 'rewardForm', component: RewardFormComponent, canActivate: [AdminGuard]},
+  {path: 'dashboard-admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
+  {path: 'reward-form', component: RewardFormComponent, canActivate: [AdminGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: '404'},
 
