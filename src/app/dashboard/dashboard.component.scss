@@ -1,6 +1,12 @@
-.card-img-top {
-  width: 100%;
-  height: 15vw;
-  object-fit: cover;
+.card-container {
+  position: relative;
+  text-align: center;
 }
 
+.card-centered {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+}
