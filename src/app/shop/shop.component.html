@@ -1,6 +1,5 @@
-<br>
 <div class="row card-group">
-  <div class="col-4" *ngFor="let reward of rewards">
+  <div class="col-4" *ngFor="let reward of rewards; index as i;">
   <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
     <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
     <div class="card-body">
@@ -9,7 +8,7 @@
 
       <div class="btn-group d-flex card-text" role="group">
 
-        <button type="button" class="card-text btn btn-secondary w-100">Bestellen</button>
+        <button type="button" class="card-text btn btn-secondary w-100" (click)="rewardBevestigen(i)">Bestellen</button>
         <button type="button" class="card-text btn btn-outline-dark mr-2 w-100" placement="bottom"
                 triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
 
@@ -19,4 +18,33 @@
   </div>
 </div>
 </div>
+
+<ng-template  #content let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{currentReward.naam}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="status == ''">
+      <h2>Gekozen reward</h2>
+      <p>Naam: {{currentReward.naam}}</p>
+      <p>Beschrijving: {{currentReward.beschrijving}}</p>
+      <p>Benodigde punten: {{currentReward.aantalPunten}}</p>
+    </div>
+    <div *ngIf="status == 'Loading'">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <span> Aan het laden</span>
+    </div>
+    <div *ngIf="status == 'Success'">
+      <p>Reward succesvol besteld.
+        Veel plezier!
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" [disabled]="status == 'Loading'" [hidden]="status == 'Success'" (click)="rewardKopen()">Bestellen</button>
+  </div>
+</ng-template>
+
 
