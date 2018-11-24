@@ -13,6 +13,7 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   user: User;
   opdrachten$: Opdrachten;
+  opdrachten2$: Opdrachten;
 
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 

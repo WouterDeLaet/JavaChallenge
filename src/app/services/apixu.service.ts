@@ -90,7 +90,8 @@ export class ApixuService {
   opdrachtIndienen(token, opdrachtId): Observable<any> {
     const date = new Date();
     const body = new HttpParams()
-      .set('isGoedgekeurd', "true")
+      .set("isGoedgekeurd", "true")
+      .set('titel', "true")
       .set('datumGoedgekeurd', date.toDateString());
     return this.http.put(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId, body.toString() , {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': token}})
@@ -98,7 +99,7 @@ export class ApixuService {
 
   opdrachtAfkeuren(token, opdrachtId): Observable<any> {
     return this.http.delete(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId,  {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
-        'x-access-token': token}})
+        'x-access-token': token}});
   }
 
   opdrachtTypeBewerken(token, opdrachtTypeId, naam, aantalPunten): Observable<any> {
@@ -106,7 +107,7 @@ export class ApixuService {
       .set('naam', naam)
       .set('aantalPunten', aantalPunten);
     return this.http.put(this.ROOT_URL + this.OPDRACHTTYPES + '/' + opdrachtTypeId, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
-        'x-access-token': token}} )
+        'x-access-token': token}});
   }
 
   opdrachtTypeToevoegen(token, naam, aantalPunten) : Promise<any>{
