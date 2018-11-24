@@ -14,18 +14,16 @@ import {AdminGuard} from './guards/admin.guard';
 import {OpdrachtToevoegenComponent} from './opdracht-toevoegen/opdracht-toevoegen.component';
 
 const routes: Routes = [
-  {path: 'opdracht-registeren', component: PuntenComponent, canActivate: [AuthGuard]},
-  {path: 'shop', component: ShopComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
+
   {path: '403', component: PermissionComponent},
   {path: '404', component: ErrorComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'dashboardadmin', component: DashboardAdminComponent},
-  {path: 'rewardForm', component: RewardFormComponent},
-  {path: 'opdracht_goed_keuren', component: OpdrachtGoedKeurenComponent, canActivate: [AdminGuard]},
-  {path: 'opdracht_toevoegen', component: OpdrachtToevoegenComponent, canActivate: [AdminGuard]},
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'opdracht-registeren', component: PuntenComponent, canActivate: [AuthGuard]},
+  {path: 'shop', component: ShopComponent, canActivate: [AuthGuard]},
   {path: 'dashboard-admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
+  {path: 'opdracht-goedkeuren', component: OpdrachtGoedKeurenComponent, canActivate: [AdminGuard]},
+  {path: 'opdracht-beheren', component: OpdrachtToevoegenComponent, canActivate: [AdminGuard]},
   {path: 'reward-form', component: RewardFormComponent, canActivate: [AdminGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: '404'},
