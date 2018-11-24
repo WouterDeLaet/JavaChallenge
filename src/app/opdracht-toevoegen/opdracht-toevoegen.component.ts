@@ -36,7 +36,13 @@ export class OpdrachtToevoegenComponent implements OnInit {
 
   opdrachtTypeVerwijderen(opdrachtTypeId)
   {
+    const verwijderd = this.apixuService.opdrachtTypeVerwijderen(this.user.token, opdrachtTypeId);
+    verwijderd.subscribe(data => {
+      console.log(data);
+    });
 
+    //Zet deze lijn in commentaar om het bericht in de console te zien
+    window.location.reload();
   }
 
   opdrachtTypeBewerke(opdrachtTypeId, naam, aantalPunten)
@@ -48,8 +54,10 @@ export class OpdrachtToevoegenComponent implements OnInit {
     window.location.reload();
   }
 
-  opdrachtTypeToevoegen(form)
+  opdrachtTypeToevoegen(naam, aantalPunten)
   {
-    console.log("submitted data from form: " + form.naam + ' ' + form.aantalPunten);
+    console.log("submitted data from form: " + naam + ' ' + aantalPunten);
+    this.apixuService.opdrachtTypeToevoegen(this.user.token, naam, aantalPunten);
+    window.location.reload();
   }
 }

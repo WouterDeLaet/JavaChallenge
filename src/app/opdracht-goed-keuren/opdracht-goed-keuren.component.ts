@@ -40,8 +40,8 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   opdrachtAfkeuren(opdrachtId)
   {
-    const goedGekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
-    goedGekeurd.subscribe(data => {
+    const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
+    afgekeurd.subscribe(data => {
       console.log(data);
     });
     window.location.reload();

@@ -1,8 +1,10 @@
 <ul *ngFor="let opdracht of opdrachten$">
     <li>
       {{opdracht.titel}}: {{opdracht.beschrijving}}
-      <button (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">goedkeuren</button>
-      <button *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht_toevoegen" routerLinkActive="active">opdracht toevoegen</button>
-      <button (click)="opdrachtAfkeuren(opdracht._id)">afkeuren</button>
+      <button class="btn btn-primary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">goedkeuren</button>
+
+      <button class="btn btn-primary" *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht_toevoegen" routerLinkActive="active">opdracht toevoegen</button>
+
+      <button style="margin: 5px" class="btn btn-secondary" (click)="opdrachtAfkeuren(opdracht._id)">afkeuren</button>
     </li>
 </ul>

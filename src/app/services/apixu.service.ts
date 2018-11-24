@@ -11,7 +11,6 @@ export class ApixuService {
 
   readonly ROOT_URL = 'http://localhost:8081/';
   readonly LOGIN_USER = 'users/login';
-  readonly USER = 'users';
   readonly OPDRACHTTYPES = 'opdrachtTypes';
   readonly OPDRACHTEN = 'opdrachten';
 
@@ -108,5 +107,25 @@ export class ApixuService {
       .set('aantalPunten', aantalPunten);
     return this.http.put(this.ROOT_URL + this.OPDRACHTTYPES + '/' + opdrachtTypeId, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': token}} )
+  }
+
+  opdrachtTypeToevoegen(token, naam, aantalPunten) : Promise<any>{
+    console.log("add");
+    const body = new HttpParams()
+      .set('naam',naam)
+      .set('aantalPunten', aantalPunten);
+    return this.http.post(this.ROOT_URL + this.OPDRACHTTYPES, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded', 'x-access-token': token}})
+      .toPromise()
+      .then((opdrachten) => console.log(opdrachten))
+      .catch((error) => {
+        console.log(error);
+        alert(error.message);
+        return EMPTY;
+      });
+  }
+
+  opdrachtTypeVerwijderen(token, opdrachtTypeId): Observable<any> {
+    return this.http.delete(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtTypeId,  {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': token}})
   }
 }

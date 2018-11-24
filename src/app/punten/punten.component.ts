@@ -50,26 +50,32 @@ export class PuntenComponent implements OnInit {
   }
 
   addOpdracht(form, userId) {
-    var titel;
-    var opdrachtTypeId;
-    var aantalPunten;
+    let titel;
+    let opdrachtTypeId;
+    let aantalPunten;
 
-    console.log('submitted form:', form);
-    console.log('submitted titel:', form.titel);
-    console.log('submitted userId:', userId);
     if(form.titel == "andere")
     {
       titel = "andere";
       opdrachtTypeId = "/";
       aantalPunten = "Nog te bespreken";
+
+      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
+      window.location.reload();
+    }
+    else if(form.titel == null || form.beschrijving == "" || form.datumInzending == "")
+    {
+      alert("Gelieve alle velden in te vullen");
     }
     else
     {
       titel = form.titel.naam;
       opdrachtTypeId = form.titel._id;
       aantalPunten = form.titel.aantalPunten;
+
+      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
+      window.location.reload();
     }
-    this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
   }
 
 }

@@ -7,7 +7,6 @@
     <label for="opdracht">Welke opdracht heb je verwezenlijkt?</label>
     <br>
     <select *ngIf="opdrachtTypes" id="opdracht" required name="titel"  #myOpdracht="ngModel" [(ngModel)]="opdrachtTypes.naam">
-      <option value="" selected="selected">Selecteer een opdracht</option>
       <option *ngFor="let c of opdrachtTypes" [ngValue]="c">{{c.naam}}</option>
       <option value="andere">Andere</option>
     </select>
