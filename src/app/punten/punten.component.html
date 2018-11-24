@@ -15,13 +15,13 @@
 
   <div >
   <div class="form-group">
-    <label for="beschrijving">Geef even een korte beschrijving van deze opdracht!</label>
-    <input type="text" id="beschrijving" class="form-control"
+    <label for="beschrijving">Geef even een korte beschrijving van deze opdracht! (als de opdracht er nog niet is, zet dan als eerste lijn de titel van de opdracht)</label>
+    <textarea cols="5" rows="5" type="text" id="beschrijving" class="form-control"
            required
            name="beschrijving"
            placeholder="beschrijving"
            #myBeschrijving="ngModel"
-           [(ngModel)]="opdrachten.beschrijving">
+           [(ngModel)]="opdrachten.beschrijving"></textarea>
   </div>
 
   <div class="form-group">
@@ -37,4 +37,3 @@
   </button>
   </div>
 </form>
-<pre>{{test | json}}</pre>

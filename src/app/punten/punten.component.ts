@@ -51,11 +51,26 @@ export class PuntenComponent implements OnInit {
   }
 
   addOpdracht(form, userId) {
+    var titel;
+    var opdrachtTypeId;
+    var aantalPunten;
+
     console.log('submitted form:', form);
     console.log('submitted titel:', form.titel);
     console.log('submitted userId:', userId);
-
-    this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId);
+    if(form.titel == "andere")
+    {
+      titel = "andere";
+      opdrachtTypeId = "/";
+      aantalPunten = "Nog te bespreken";
+    }
+    else
+    {
+      titel = form.titel.naam;
+      opdrachtTypeId = form.titel._id;
+      aantalPunten = form.titel.aantalPunten;
+    }
+    this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
   }
 
 }

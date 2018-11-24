@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { PermissionComponent } from './permission/permission.component';
 import { OpdrachtGoedKeurenModule } from './opdracht-goed-keuren/opdracht-goed-keuren.module';
+import { OpdrachtToevoegenModule } from './opdracht-toevoegen/opdracht-toevoegen.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OpdrachtGoedKeurenModule } from './opdracht-goed-keuren/opdracht-goed-k
     HttpClientModule,
     RewardFormModule,
     FormsModule,
-    OpdrachtGoedKeurenModule
+    OpdrachtGoedKeurenModule,
+    OpdrachtToevoegenModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -35,22 +35,6 @@ export class ApixuService {
       );
   }
 
-  getUser(token, userId): Observable<any> {
-    const body = new HttpParams()
-      .set('ID', userId);
-    return this.http.get(this.ROOT_URL + this.USER, {headers: {'x-access-token' : token}, params: body})
-      .pipe(
-        tap(req => console.log('get-request', req)),
-        catchError(
-          (error) => {
-            console.log(error);
-            alert(error.message);
-            return EMPTY;
-          }),
-        share()
-      );
-  }
-
   getOpdrachtTypese(token): Observable<any> {
     return this.http.get(this.ROOT_URL + this.OPDRACHTTYPES, {headers: {'x-access-token' : token}})
       .pipe(
@@ -65,15 +49,16 @@ export class ApixuService {
       );
   }
 
-  nieuweOpdrachtIndienen(token, data, userId) : Promise<any>{
+  nieuweOpdrachtIndienen(token, data, userId, titel, opdrachtTypeId, aantalPunten) : Promise<any>{
+
     console.log("add");
     const body = new HttpParams()
-      .set('titel', data.titel.naam)
+      .set('titel',titel)
       .set('beschrijving', data.beschrijving)
       .set('datumInzending', data.datumInzending)
       .set('userId', userId)
-      .set('opdrachtTypeId', data.titel._id)
-      .set('aantalPunten', data.titel.aantalPunten)
+      .set('opdrachtTypeId', opdrachtTypeId)
+      .set('aantalPunten', aantalPunten)
       .set('isGoedgekeurd', "false")
       .set('datumGoedgekeurd', "");
     return this.http.post(this.ROOT_URL + this.OPDRACHTEN, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded', 'x-access-token': token}})
@@ -110,5 +95,18 @@ export class ApixuService {
       .set('datumGoedgekeurd', date.toDateString());
     return this.http.put(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId, body.toString() , {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': token}})
+  }
+
+  opdrachtAfkeuren(token, opdrachtId): Observable<any> {
+    return this.http.delete(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId,  {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': token}})
+  }
+
+  opdrachtTypeBewerken(token, opdrachtTypeId, naam, aantalPunten): Observable<any> {
+    const body = new HttpParams()
+      .set('naam', naam)
+      .set('aantalPunten', aantalPunten);
+    return this.http.put(this.ROOT_URL + this.OPDRACHTTYPES + '/' + opdrachtTypeId, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': token}} )
   }
 }

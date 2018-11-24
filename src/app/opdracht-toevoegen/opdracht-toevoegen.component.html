@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <th>Naam</th>
+    <th>Aantal punten</th>
+    <th>Bewerken</th>
+    <th>Verwijderen</th>
+  </tr>
+  <tr *ngFor="let opdrachtType of opdrachtTypes">
+    <td><input id="naam" value="{{opdrachtType.naam}}" #naam></td>
+    <td><input id="aantalPunten" value="{{opdrachtType.aantalPunten}}" #aantalPunten></td>
+    <td><button (click)="opdrachtTypeBewerke(opdrachtType._id, naam.value, aantalPunten.value)">Bewerken</button></td>
+    <td><button>Verwijderen</button></td>
+  </tr>
+</table>
+<form #opdrachtTypeToevoegenForm="ngForm">
+  <div >
+    <div class="form-group">
+      <label for="naamForm">Geef de naam van het type opdracht</label>
+      <input type="text" id="naamForm" class="form-control"
+                required
+                name="naamForm"
+                placeholder="Naam van het type opdracht"
+                #naamForm="ngModel"
+                [(ngModel)]="opdrachtTypeForm.naam">
+    </div>
+
+    <div class="form-group">
+      <label for="aantalPuntenForm">Hoeveel punten is dit type opdracht waart</label>
+      <input type="text" id="aantalPuntenForm" class="form-control"
+             required
+             name="aantalPuntenForm"
+             placeholder="Aantal punten"
+             #aantalPuntenForm="ngModel"
+             [(ngModel)]="opdrachtTypeForm.aantalPunten">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="opdrachtTypeToevoegen(opdrachtTypeToevoegenForm.value)">
+      Toevoegen
+    </button>
+  </div>
+</form>

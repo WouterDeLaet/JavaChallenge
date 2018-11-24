@@ -1,29 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" routerLink="/">Java Challenge</a>
+<nav class="navbar navbar-expand-md navbar navbar-light bg-light sticky-top">
+  <a class="navbar-brand" routerLink="/"><img src="https://iadvisegroep.eu/wp-content/uploads/2017/01/jstackLogoRGB_1-positief-1024x266.png" height="30"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" data-target="#navbarContent" (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="isCollapsed" (click)="isCollapsed = !isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/punten" routerLinkActive="active">Opdracht indienen</a>
+        <a class="nav-link" routerLink="/opdracht-registeren" routerLinkActive="active">Opdracht registreren</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/shop" routerLinkActive="active">Shop</a>
       </li>
-      <li class="nav-item" >
-        <a class="nav-link" routerLink="/opdracht_goed_keuren" routerLinkActive="active">Opdracht goed keuren</a>
-      </li>
     </ul>
     <ul class="navbar-nav">
       <span class="navbar-text d-md-block d-sm-none" *ngIf="user">
-            {{ user.naam }}
+             Welkom, <span class="username">{{ user.naam }}</span>!
       </span>
       <li class="nav-item" *ngIf="!user">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-link font-weight-bold" routerLink="/login" routerLinkActive="active">Login</a>
       </li>
       <li class="nav-item" *ngIf="user">
-        <a class="nav-link" routerLink="/login" (click)="authService.logout()">Logout</a>
+        <a class="nav-link font-weight-bold" routerLink="/login" (click)="authService.logout()">Logout</a>
       </li>
     </ul>
   </div>

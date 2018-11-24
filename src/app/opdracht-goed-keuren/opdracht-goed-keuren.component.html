@@ -1,7 +1,8 @@
-<pre>{{opdrachten$ | json}}</pre>
 <ul *ngFor="let opdracht of opdrachten$">
-  <li>
-    {{opdracht.titel}}
-    <button (click)="opdrachtGoedkeuren(opdracht._id, opdracht.userId, opdracht.aantalPunten)">goed keuren</button>
-  </li>
+    <li>
+      {{opdracht.titel}}: {{opdracht.beschrijving}}
+      <button (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">goedkeuren</button>
+      <button *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht_toevoegen" routerLinkActive="active">opdracht toevoegen</button>
+      <button (click)="opdrachtAfkeuren(opdracht._id)">afkeuren</button>
+    </li>
 </ul>

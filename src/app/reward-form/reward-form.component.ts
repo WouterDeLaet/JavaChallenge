@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import {RewardService} from '../services/reward.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+
+
 
 
 @Component({
@@ -14,6 +16,8 @@ export class RewardFormComponent implements OnInit {
 
   user: User;
 
+  loading = true;
+
   reward = {
     _id: '',
     naam: '',
@@ -23,24 +27,26 @@ export class RewardFormComponent implements OnInit {
     datum: ''
   };
 
-  constructor(private authService: AuthService, private rewardService: RewardService, private router: Router ) { }
+  constructor(private authService: AuthService, private rewardService: RewardService,
+              private router: Router, private route: ActivatedRoute ) {
+
+  }
 
   ngOnInit() {
+      this.route.queryParams.subscribe(params => {
+        const id = params['id'] || 0;
+        if (id !== 0) {
+          this.rewardService.getReward(this.user, id).subscribe( result => {
+            this.reward = result;
+            this.loading = false;
+            }
+          );
+        } else {
+          this.loading = false;
+        }
+      });
+}
 
-    // Jolien Lauwers - Nakijken van adminNiveau voor permissie
-
-    this.authService.userData$.subscribe(data => {
-
-      if (this.authService.userData$.value.adminNiveau.toString() != '1') {
-        this.router.navigate(['']);
-      }
-
-      else {
-      this.user = data;
-      }
-
-    });
-  }
 
   // Jens Sels - Toevoegen of bewerken van reward
   commitReward(isValid: any) {

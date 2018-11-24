@@ -3,7 +3,6 @@ import {ApixuService} from '../services/apixu.service';
 import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import {Opdrachten} from '../interfaces/opdrachten';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-opdracht-goed-keuren',
@@ -14,7 +13,6 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   user: User;
   opdrachten$: Opdrachten;
-  userById: User;
 
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 
@@ -31,21 +29,22 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
     });
   }
 
-  opdrachtGoedkeuren(opdrachtId, userId, aantalPunten)
+  opdrachtGoedkeuren(opdrachtId)
   {
     const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
     goedGekeurd.subscribe(data => {
       console.log(data);
-    })
+    });
+    window.location.reload();
   }
 
-  getUSerById(userId)
+  opdrachtAfkeuren(opdrachtId)
   {
-    const userById$ = this.apixuService.getOpdrachten(this.user.token, false);
-    userById$.subscribe(data => {
+    const goedGekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
+    goedGekeurd.subscribe(data => {
       console.log(data);
-      this.userById = data;
     });
+    window.location.reload();
   }
 }
 
