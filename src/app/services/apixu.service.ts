@@ -125,7 +125,7 @@ export class ApixuService {
   }
 
   opdrachtTypeVerwijderen(token, opdrachtTypeId): Observable<any> {
-    return this.http.delete(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtTypeId,  {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+    return this.http.delete(this.ROOT_URL + this.OPDRACHTTYPES + '/' + opdrachtTypeId,  {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': token}})
   }
 }

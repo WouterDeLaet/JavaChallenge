@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'dashboardadmin', component: DashboardAdminComponent},
   {path: 'rewardForm', component: RewardFormComponent},
-  {path: 'opdracht_goed_keuren', component: OpdrachtGoedKeurenComponent, canActivate: [AdminGuard]},
+  {path: 'opdracht-goedkeuren', component: OpdrachtGoedKeurenComponent, canActivate: [AdminGuard]},
   {path: 'opdracht_toevoegen', component: OpdrachtToevoegenComponent, canActivate: [AdminGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'dashboard-admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
