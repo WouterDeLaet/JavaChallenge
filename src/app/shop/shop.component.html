@@ -1,3 +1,8 @@
+<div class="row" *ngIf="saldo">
+  <div class="col-md-12">
+    <p>Uw saldo is {{saldo}}</p>
+  </div>
+</div>
 <div class="row card-group">
   <div class="col-4" *ngFor="let reward of rewards; index as i;">
   <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
@@ -8,7 +13,7 @@
 
       <div class="btn-group d-flex card-text" role="group">
 
-        <button type="button" class="card-text btn btn-secondary w-100" (click)="rewardBevestigen(i)">Bestellen</button>
+        <button type="button" [disabled]="reward.aantalPunten > saldo" class="card-text btn btn-secondary w-100" (click)="rewardBevestigen(i)">Bestellen</button>
         <button type="button" class="card-text btn btn-outline-dark mr-2 w-100" placement="bottom"
                 triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
 

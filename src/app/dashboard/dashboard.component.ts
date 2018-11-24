@@ -14,19 +14,33 @@ export class DashboardComponent implements OnInit {
 
   user: User;
   rewards: Reward;
+  saldo = 0;
+
+  transacties = {};
+  opdrachten = {};
 
   constructor(public authService: AuthService, public rewardService: RewardService, private router: Router) { }
 
   ngOnInit() {
 
     this.authService.userData$.subscribe(user => {
-
-        this.rewardService.getRewards(user).subscribe(result => {
-        this.rewards = result;
-        console.log(result);
-
+      this.user = user;
+      this.authService.getGoedgekeurdeOpdrachtenForUser(user).subscribe(opdrachten => {
+        this.opdrachten = opdrachten;
+        opdrachten.forEach(element => {
+          this.saldo += element.aantalPunten;
+        });
+        this.authService.getTransactiesForUser(user).subscribe(transacties => {
+          this.transacties = transacties;
+          transacties.forEach(element => {
+            this.saldo -= element.aantalPunten;
+          });
+        });
       });
-
+      this.rewardService.getRewards(user).subscribe(result => {
+        this.rewards = result;
+      });
     });
+
   }
 }

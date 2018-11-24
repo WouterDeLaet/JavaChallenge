@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, EMPTY, Observable} from 'rxjs';
 import {User} from '../interfaces/user';
 import {Router} from '@angular/router';
 import {ApixuService} from './apixu.service';
+import {catchError, share, tap} from 'rxjs/operators';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {finalize} from 'rxjs/internal/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ export class AuthService {
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
   userArray: any;
 
-  constructor(private router: Router, private apixu: ApixuService) {
+  constructor(private router: Router, private apixu: ApixuService, private http: HttpClient) {
     if (localStorage.getItem('user')) {
       console.log(JSON.parse(localStorage.getItem('user')));
       const json = JSON.parse(localStorage.getItem('user'));
@@ -57,5 +60,38 @@ export class AuthService {
     } else {
       this.userData$.next(null);
     }
+  }
+
+
+  getTransactiesForUser(user): Observable<any> {
+    return this.http.get('http://localhost:8081/users/' + user._id + '/transacties',
+      {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
+  getGoedgekeurdeOpdrachtenForUser(user): Observable<any> {
+    return this.http.get('http://localhost:8081/users/' + user._id + '/opdrachten?isGoedgekeurd=true',
+      {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+          'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
   }
 }

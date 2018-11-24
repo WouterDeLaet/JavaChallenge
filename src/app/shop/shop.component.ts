@@ -18,6 +18,7 @@ export class ShopComponent implements OnInit {
   user: User;
   rewards: Reward;
   currentReward: Reward;
+  saldo = 0;
 
   constructor(public authService: AuthService, public rewardService: RewardService,
               public transactieService: TransactieService, private modalService: NgbModal) { }
@@ -25,10 +26,21 @@ export class ShopComponent implements OnInit {
   ngOnInit() {
     this.authService.userData$.subscribe(user => {
       this.user = user;
+      this.authService.getGoedgekeurdeOpdrachtenForUser(user).subscribe(opdrachten => {
+        opdrachten.forEach(element => {
+          this.saldo += element.aantalPunten;
+        });
+        this.authService.getTransactiesForUser(user).subscribe(transacties => {
+          transacties.forEach(element => {
+            this.saldo -= element.aantalPunten;
+          });
+        });
+      });
       this.rewardService.getRewards(user).subscribe(result => {
         this.rewards = result;
       });
     });
+
   }
 
   rewardBevestigen(rewardIndex) {
@@ -38,7 +50,7 @@ export class ShopComponent implements OnInit {
   }
 
   rewardKopen() {
-    if (this.user != null && this.currentReward != null) {
+    if (this.user != null && this.currentReward != null && this.currentReward.aantalPunten < this.saldo) {
       this.status = 'Loading';
       const newTransactie = {'userId': this.user._id, 'rewardId': this.currentReward._id, 'aantalPunten': this.currentReward.aantalPunten };
       this.transactieService.addTransactieForUser(newTransactie, this.user).subscribe(result => {
