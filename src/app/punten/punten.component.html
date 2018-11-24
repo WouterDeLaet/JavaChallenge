@@ -1,6 +1,7 @@
-<br>
-<h2>Je event registreren:</h2>
+<h5>Je opdracht invoeren</h5>
 <hr>
+<div class="row">
+<div class="col-sm-8">
 <form #registratieForm="ngForm">
 
   <div class="form-group">
@@ -14,11 +15,12 @@
 
   <div >
   <div class="form-group">
-    <label for="beschrijving">Geef even een korte beschrijving van deze opdracht! (als de opdracht er nog niet is, zet dan als eerste lijn de titel van de opdracht)</label>
+    <label for="beschrijving">Geef even een korte beschrijving van deze opdracht!</label>
+
     <textarea cols="5" rows="5" type="text" id="beschrijving" class="form-control"
            required
            name="beschrijving"
-           placeholder="beschrijving"
+           placeholder="(Als de opdracht niet tussen de lijst staat, zet dan op de eerste lijn van deze beschrijving de titel van je opdracht!)"
            #myBeschrijving="ngModel"
            [(ngModel)]="opdrachten.beschrijving"></textarea>
   </div>
@@ -31,8 +33,13 @@
            #myDatum="ngModel"
            [(ngModel)]="opdrachten.datumInzending">
   </div>
-  <button type="submit" class="btn btn-primary" (click)="addOpdracht(registratieForm.value, user._id)">
+  <button type="submit" class="btn btn-secondary" (click)="addOpdracht(registratieForm.value, user._id)">
     Bevestigen
   </button>
   </div>
-</form>
+</form></div>
+
+<div class="col-sm-4">
+  <img src="https://image.flaticon.com/icons/svg/1055/1055645.svg" >
+</div>
+</div>

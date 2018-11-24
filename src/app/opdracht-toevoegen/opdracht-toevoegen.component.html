@@ -1,17 +1,19 @@
+<h5>Nieuwe opdracht toevoegen</h5>
+<hr>
 <form #opdrachtTypeToevoegenForms="ngForm">
   <div >
     <div class="form-group">
-      <label for="naamForm">Geef de naam van het type opdracht</label>
+      <label for="naamForm">Geef een naam in voor deze opdracht:</label>
       <input type="text" id="naamForm" class="form-control"
              required
              name="naamForm"
-             placeholder="Naam van het type opdracht"
+             placeholder="Naam van opdracht of event"
              #naamForm="ngModel"
              [(ngModel)]="opdrachtTypeForm.naam">
     </div>
 
     <div class="form-group">
-      <label for="aantalPuntenForm">Hoeveel punten is dit type opdracht waart</label>
+      <label for="aantalPuntenForm">Hoeveel punten is dit type opdracht waard?</label>
       <input type="text" id="aantalPuntenForm" class="form-control"
              required
              name="aantalPuntenForm"
@@ -19,22 +21,31 @@
              #aantalPuntenForm="ngModel"
              [(ngModel)]="opdrachtTypeForm.aantalPunten">
     </div>
-    <button type="submit" class="btn btn-primary" (click)="opdrachtTypeToevoegen(naamForm.value, aantalPuntenForm.value)">
+    <button type="submit" class="btn btn-secondary" (click)="opdrachtTypeToevoegen(naamForm.value, aantalPuntenForm.value)">
       Toevoegen
     </button>
   </div>
 </form>
-<table>
+<br>
+<br>
+<h5>Overzicht van alle opdrachten</h5>
+<hr>
+<table class="table">
+  <thead class="thead-light">
   <tr>
-    <th>Naam</th>
-    <th>Aantal punten</th>
-    <th>Bewerken</th>
-    <th>Verwijderen</th>
+    <th scope="col">Naam van de opdracht</th>
+    <th scope="col">Hoeveel punten waard?</th>
+    <th scope="col"></th>
   </tr>
-  <tr *ngFor="let opdrachtType of opdrachtTypes">
-    <td><input id="naam" value="{{opdrachtType.naam}}" #naam></td>
+  </thead>
+  <tbody>
+  <tr scope="row" *ngFor="let opdrachtType of opdrachtTypes">
+    <td><input size="90" id="naam" value="{{opdrachtType.naam}}" #naam></td>
     <td><input id="aantalPunten" value="{{opdrachtType.aantalPunten}}" #aantalPunten></td>
-    <td><button class="btn btn-primary" (click)="opdrachtTypeBewerke(opdrachtType._id, naam.value, aantalPunten.value)">Bewerken</button></td>
-    <td><button class="btn btn-secondary" (click)="opdrachtTypeVerwijderen(opdrachtType._id)">Verwijderen</button></td>
+    <td><span class="btn-group" role="group">
+      <button type="button" class="btn btn-secondary" (click)="opdrachtTypeBewerke(opdrachtType._id, naam.value, aantalPunten.value)">Bewerken</button>
+      <button type="button" class="btn btn-outline-dark" (click)="opdrachtTypeVerwijderen(opdrachtType._id)">Verwijderen</button>
+    </span></td>
   </tr>
+  </tbody>
 </table>

@@ -1,9 +1,20 @@
-<table>
-  <tr *ngFor="let opdracht of opdrachten$">
-    <td>{{opdracht.titel}}</td>
-    <td>{{opdracht.beschrijving}}</td>
-    <td><button class="btn btn-primary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">goedkeuren</button></td>
-    <td><button class="btn btn-primary" *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht_toevoegen" routerLinkActive="active">opdracht toevoegen</button></td>
-    <td><button style="margin: 5px" class="btn btn-secondary" (click)="opdrachtAfkeuren(opdracht._id)">afkeuren</button></td>
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Naam van de opdracht</th>
+    <th scope="col">Beschrijving</th>
+    <th scope="col"></th>
   </tr>
+  </thead>
+  <tbody>
+  <tr scope="row" *ngFor="let opdracht of opdrachten$">
+    <td>{{opdracht.titel | titlecase }}</td>
+    <td>{{opdracht.beschrijving }}</td>
+    <td><span class="btn-group" role="group">
+      <button type="button" class="btn btn-secondary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">Goedkeuren</button>
+      <button type="button" class="btn btn-secondary" *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht_toevoegen" routerLinkActive="active">Opdracht toevoegen</button>
+      <button type="button" class="btn btn-outline-dark" (click)="opdrachtAfkeuren(opdracht._id)">Afkeuren</button>
+    </span></td>
+  </tr>
+  </tbody>
 </table>

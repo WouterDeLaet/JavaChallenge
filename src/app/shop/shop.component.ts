@@ -12,6 +12,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+
   status = '';
   @ViewChild('content') private contentModal;
   public isCollapsed = true;
@@ -61,7 +62,7 @@ export class ShopComponent implements OnInit {
 
   openModal() {
     console.log(this.status);
-    this.modalService.open(this.contentModal , {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(this.contentModal ,    {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
       console.log(`Closed with: ${result}`);
     }, (reason) => {
       console.log(reason);

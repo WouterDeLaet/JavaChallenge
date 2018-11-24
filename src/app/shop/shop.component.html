@@ -1,6 +1,5 @@
 <div class="row" *ngIf="saldo">
   <div class="col-md-12">
-    <p>Uw saldo is {{saldo}}</p>
   </div>
 </div>
 <div class="row card-group">
@@ -25,29 +24,67 @@
 
 <ng-template  #content let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{currentReward.naam}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">Weet je 't zeker?</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div *ngIf="status == ''">
-      <h2>Gekozen reward</h2>
-      <p>Naam: {{currentReward.naam}}</p>
-      <p>Beschrijving: {{currentReward.beschrijving}}</p>
-      <p>Benodigde punten: {{currentReward.aantalPunten}}</p>
+      <table class="table">
+        <thead class="thead-light">
+        <tr scope="row">
+          <th scope="col">Geselecteerde reward</th>
+          <th scope="col">Beschrijving</th>
+          <th scope="col">Benodigde punten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row">
+          <td scope="col">{{currentReward.naam}}</td>
+          <td scope="col">{{currentReward.beschrijving}}</td>
+          <td scope="col">{{currentReward.aantalPunten}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="https://image.flaticon.com/icons/svg/138/138276.svg">
+        </div>
+
+        <div class="col-sm-8">
+          <br>
+          <table class="table">
+            <tbody>
+            <tr scope="row">
+              <td scope="col">Je huidig saldo bedraagt:</td>
+              <td scope="col" style="font-weight: bold">{{saldo}} punten</td>
+            </tr>
+            <tr scope="row">
+              <td scope="col">Na je bestelling zal je nieuwe saldo bedragen: </td>
+              <td scope="col" style="font-weight: bold">{{saldo - currentReward.aantalPunten}} punten</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
     </div>
     <div *ngIf="status == 'Loading'">
-      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <span> Aan het laden</span>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <span>Loading! :-)</span>
     </div>
     <div *ngIf="status == 'Success'">
-      <p>Reward succesvol besteld.
+      <p>Je reward werd besteld!
         Veel plezier!
       </p>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" [disabled]="status == 'Loading'" [hidden]="status == 'Success'" (click)="rewardKopen()">Bestellen</button>
+    <button type="button" class="btn btn-secondary" [disabled]="status == 'Loading'" [hidden]="status == 'Success'" (click)="rewardKopen()">Bevestigen</button>
   </div>
 </ng-template>
 
