@@ -52,8 +52,6 @@ export class RewardLijstComponent implements OnInit {
 
   // Jens Sels - Deleten van een reward
   deleteReward() {
-    let beslissing = confirm("bent u zeker dat u de reward wilt verwijderen?");
-    if (beslissing == true) {
       if (this.currentReward != null) {
         this.rewardService.deleteReward(this.currentReward._id, this.user).subscribe(data => {
           this.status = 'done';
@@ -64,5 +62,4 @@ export class RewardLijstComponent implements OnInit {
         });
       }
     }
-  }
 }

@@ -14,7 +14,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class OpdrachtGoedKeurenComponent implements OnInit {
 
   user: User;
-  opdrachten$: Opdrachten;
+  opdrachten$: any[];
   userbyId$ = {
     email: '',
     wachtwoord: '',
@@ -27,11 +27,15 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( data =>
-      {
-        this.user = data
+    this.authService.userData$.subscribe( data => {
+        this.user = data;
       }
     );
+    this.getOpdrachten();
+  }
+
+  getOpdrachten() {
+    this.opdrachten$ = [];
     const opdrachten$ = this.apixuService.getOpdrachten(this.user.token, false);
     opdrachten$.subscribe(data => {
       console.log(data);
@@ -42,40 +46,35 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
     });
   }
 
-  opdrachtGoedkeuren(opdrachtId)
-  {
+  opdrachtGoedkeuren(opdrachtId) {
       const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
       goedGekeurd.subscribe(data => {
         console.log(data);
+        this.getOpdrachten();
       });
-      this.ngOnInit();
   }
 
-  opdrachtAfkeuren(opdrachtId)
-  {
-    let beslissing = confirm("Weet je zeker dat je deze opdracht wil afkeuren?");
-    if(beslissing == true)
-    {
+  opdrachtAfkeuren(opdrachtId) {
+    const beslissing = confirm('Weet je zeker dat je deze opdracht wil afkeuren?');
+    if (beslissing === true) {
       const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
       afgekeurd.subscribe(data => {
         console.log(data);
+        this.getOpdrachten();
       });
-      this.ngOnInit();
     }
   }
 
-  puntenToekennen(opdrachtId, punten)
-  {
+  puntenToekennen(opdrachtId, punten) {
     console.log(punten);
       const goedGekeurd = this.apixuService.opdrachtIndienenMetPunten(this.user.token, opdrachtId, punten);
       goedGekeurd.subscribe(data => {
         console.log(data);
+        this.getOpdrachten();
       });
-      this.ngOnInit();
   }
 
-  getUserById(userId)
-  {
+  getUserById(userId) {
     const user$ = this.apixuService.getUserById(this.user.token, userId);
     user$.subscribe(data => {
       this.userbyId$ = data;

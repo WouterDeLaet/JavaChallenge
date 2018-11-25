@@ -24,16 +24,21 @@ export class DashboardComponent implements OnInit {
 
     this.authService.userData$.subscribe(user => {
       this.user = user;
-      this.authService.getGoedgekeurdeOpdrachtenForUser(user).subscribe(opdrachten => {
+      this.authService.getOpdrachtenForUser(user).subscribe(opdrachten => {
         this.opdrachten = opdrachten;
         this.saldo = 0;
         opdrachten.forEach(element => {
+          if (element.isGoedgekeurd !== 'false' && parseInt(element.aantalPunten, 10)) {
             this.saldo += parseInt(element.aantalPunten, 10);
+          }
         });
         this.authService.getTransactiesForUser(user).subscribe(transacties => {
           this.transacties = transacties;
           transacties.forEach(element => {
-            this.saldo -= parseInt(element.aantalPunten, 10);
+            if (parseInt(element.aantalPunten, 10)) {
+              this.saldo -= parseInt(element.aantalPunten, 10);
+            }
+            this.rewardService.getReward(this.user, element.rewardId).subscribe(data => element.reward = data);
           });
         });
       });

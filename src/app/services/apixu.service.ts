@@ -64,7 +64,7 @@ export class ApixuService {
       );
   }
 
-  nieuweOpdrachtIndienen(token, data, userId, titel, opdrachtTypeId, aantalPunten): Promise<any> {
+  nieuweOpdrachtIndienen(token, data, userId, titel, opdrachtTypeId, aantalPunten): Observable<any> {
 
     console.log('add');
     const body = new HttpParams()
@@ -76,14 +76,18 @@ export class ApixuService {
       .set('aantalPunten', aantalPunten)
       .set('isGoedgekeurd', 'false')
       .set('datumGoedgekeurd', '');
+
     return this.http.post(this.ROOT_URL + this.OPDRACHTEN, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded', 'x-access-token': token}})
-      .toPromise()
-      .then((opdrachten) => console.log(opdrachten))
-      .catch((error) => {
-        console.log(error);
-        alert(error.message);
-        return EMPTY;
-      });
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
   }
 
   getOpdrachten(token, isGoedGekeurd): Observable<any> {

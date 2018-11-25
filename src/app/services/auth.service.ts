@@ -44,7 +44,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     this.setUserData(null, null);
-    window.location.reload()
+    window.location.reload();
   }
 
   setUserData(user, token) {
@@ -81,8 +81,21 @@ export class AuthService {
 
   getGoedgekeurdeOpdrachtenForUser(user): Observable<any> {
     const body = new HttpParams()
-      .set('isGoedgekeurd', "true");
-    return this.http.get('http://localhost:8081/users/' + user._id + '/opdrachten' ,{headers: {'x-access-token': user.token}, params: body})
+      .set('isGoedgekeurd', 'true');
+    return this.http.get('http://localhost:8081/users/' + user._id + '/opdrachten' , {headers: {'x-access-token': user.token}, params: body})
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+  getOpdrachtenForUser(user): Observable<any> {
+    return this.http.get('http://localhost:8081/users/' + user._id + '/opdrachten' , {headers: {'x-access-token': user.token}})
       .pipe(
         tap(req => console.log('post-request', req)),
         catchError(
