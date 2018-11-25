@@ -1,11 +1,12 @@
 <div class="row">
   <div class="col-sm-6">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded h-100">
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
 
       <img class="card-img-top img-fluid card-container" src="https://image.flaticon.com/icons/svg/1255/1255612.svg" alt="Punten">
       <p class="card-centered text-dark">{{saldo}}</p>
 
       <div class="card-body">
+        <br>
         <h5 class="card-title">Mijn punten</h5>
         <h6 class="card-subtitle mb-2 text-muted">Hoeveel punten heb je al bijeen gespaard?</h6>
       </div>
@@ -39,11 +40,13 @@
 
     <div class="row">
       <div class="col-sm-12">
+        <h5>Je ingediende opdrachten</h5>
+        <hr>
         <table class="table">
           <thead class="thead-light">
           <tr>
-            <th scope="col">Je opdracht</th>
-            <th scope="col">Datum van de opdracht?</th>
+            <th scope="col">Naam van de opdracht</th>
+            <th scope="col">Datum opdracht</th>
             <th scope="col">Werd goedgekeurd?</th>
           </tr>
           </thead>
@@ -52,7 +55,7 @@
             <td>{{opdracht.titel}}</td>
             <td>{{opdracht.datumInzending | date: 'dd/MM/yyyy'}}</td>
             <td>
-              <span *ngIf="opdracht.isGoedgekeurd=='true'">Goedgekeurd!</span>
+              <span *ngIf="opdracht.isGoedgekeurd=='true'">Goedgekeurd voor {{opdracht.aantalPunten}} punten!</span>
               <span *ngIf="opdracht.isGoedgekeurd=='false'">In beoordeling></span>
             </td>
           </tr>

@@ -40,7 +40,7 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   opdrachtAfkeuren(opdrachtId)
   {
-    let beslissing = confirm("bent u zeker dat u de opdracht wilt afkeuren?");
+    let beslissing = confirm("Weet je zeker dat je deze opdracht wil afkeuren?");
     if(beslissing == true)
     {
       const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);

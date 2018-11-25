@@ -36,7 +36,7 @@ export class OpdrachtToevoegenComponent implements OnInit {
 
   opdrachtTypeVerwijderen(opdrachtTypeId)
   {
-    let beslissing = confirm("bent u zeker dat u de opdracht type wilt verwijderen?");
+    let beslissing = confirm("Weet je zeker dat je deze opdracht wilt verwijderen?");
     if(beslissing == true) {
       const verwijderd = this.apixuService.opdrachtTypeVerwijderen(this.user.token, opdrachtTypeId);
       verwijderd.subscribe(data => {
