@@ -41,8 +41,7 @@ export class OpdrachtToevoegenComponent implements OnInit {
       console.log(data);
     });
 
-    //Zet deze lijn in commentaar om het bericht in de console te zien
-    window.location.reload();
+    this.ngOnInit();
   }
 
   opdrachtTypeBewerke(opdrachtTypeId, naam, aantalPunten)
@@ -51,13 +50,13 @@ export class OpdrachtToevoegenComponent implements OnInit {
     opdrachtTypeBewerkt.subscribe(data => {
       console.log(data);
     });
-    window.location.reload();
+    this.ngOnInit();
   }
 
   opdrachtTypeToevoegen(naam, aantalPunten)
   {
     console.log("submitted data from form: " + naam + ' ' + aantalPunten);
     this.apixuService.opdrachtTypeToevoegen(this.user.token, naam, aantalPunten);
-    window.location.reload();
+    this.ngOnInit();
   }
 }
