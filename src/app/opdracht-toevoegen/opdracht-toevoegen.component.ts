@@ -36,27 +36,35 @@ export class OpdrachtToevoegenComponent implements OnInit {
 
   opdrachtTypeVerwijderen(opdrachtTypeId)
   {
-    const verwijderd = this.apixuService.opdrachtTypeVerwijderen(this.user.token, opdrachtTypeId);
-    verwijderd.subscribe(data => {
-      console.log(data);
-    });
-
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de opdracht type wilt verwijderen?");
+    if(beslissing == true) {
+      const verwijderd = this.apixuService.opdrachtTypeVerwijderen(this.user.token, opdrachtTypeId);
+      verwijderd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
   }
 
   opdrachtTypeBewerke(opdrachtTypeId, naam, aantalPunten)
   {
-    const opdrachtTypeBewerkt = this.apixuService.opdrachtTypeBewerken(this.user.token, opdrachtTypeId, naam, aantalPunten);
-    opdrachtTypeBewerkt.subscribe(data => {
-      console.log(data);
-    });
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de opdracht type wilt bewerken?");
+    if(beslissing == true) {
+      const opdrachtTypeBewerkt = this.apixuService.opdrachtTypeBewerken(this.user.token, opdrachtTypeId, naam, aantalPunten);
+      opdrachtTypeBewerkt.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
   }
 
   opdrachtTypeToevoegen(naam, aantalPunten)
   {
-    console.log("submitted data from form: " + naam + ' ' + aantalPunten);
-    this.apixuService.opdrachtTypeToevoegen(this.user.token, naam, aantalPunten);
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de opdracht type wilt toevoegen?");
+    if(beslissing == true) {
+      console.log("submitted data from form: " + naam + ' ' + aantalPunten);
+      this.apixuService.opdrachtTypeToevoegen(this.user.token, naam, aantalPunten);
+      this.ngOnInit();
+    }
   }
 }

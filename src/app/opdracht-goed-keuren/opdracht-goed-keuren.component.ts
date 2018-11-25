@@ -31,29 +31,39 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   opdrachtGoedkeuren(opdrachtId)
   {
-    const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
-    goedGekeurd.subscribe(data => {
-      console.log(data);
-    });
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de opdracht wilt goedkeuren?");
+    if(beslissing == true) {
+      const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
+      goedGekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
   }
 
   opdrachtAfkeuren(opdrachtId)
   {
-    const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
-    afgekeurd.subscribe(data => {
-      console.log(data);
-    });
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de opdracht wilt afkeuren?");
+    if(beslissing == true)
+    {
+      const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
+      afgekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
   }
 
   puntenToekennen(opdrachtId, punten)
   {
-    const goedGekeurd = this.apixuService.opdrachtIndienenMetPunten(this.user.token, opdrachtId, punten);
-    goedGekeurd.subscribe(data => {
-      console.log(data);
-    });
-    this.ngOnInit();
+    let beslissing = confirm("bent u zeker dat u de punten wilt toekennen?");
+    if(beslissing == true) {
+      const goedGekeurd = this.apixuService.opdrachtIndienenMetPunten(this.user.token, opdrachtId, punten);
+      goedGekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
   }
 }
 
