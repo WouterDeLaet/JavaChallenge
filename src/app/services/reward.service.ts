@@ -88,4 +88,19 @@ export class RewardService {
         share()
       );
   }
+
+  deleteReward(rewardUID, user) {
+    return this.http.delete(this.ROOT_URL + '/' + rewardUID, {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': user.token}})
+      .pipe(
+        tap(req => console.log('post-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
 }

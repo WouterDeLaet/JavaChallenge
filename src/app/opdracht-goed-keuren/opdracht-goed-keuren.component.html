@@ -14,7 +14,8 @@
     <td>{{opdracht.userId}}</td>
     <td><span class="btn-group" role="group">
       <button type="button" class="btn btn-secondary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">Goedkeuren</button>
-      <button type="button" class="btn btn-secondary" *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht-beheren" routerLinkActive="active">Opdracht toevoegen</button>
+        <input *ngIf="opdracht.titel == 'andere'" #punten id="punten" placeholder="aantal punten">
+      <button *ngIf="opdracht.titel == 'andere'" type="button" class="btn btn-secondary" (click)="puntenToekennen(opdracht._id, punten.value)">Punten toekennen</button>
       <button type="button" class="btn btn-outline-dark" (click)="opdrachtAfkeuren(opdracht._id)">Afkeuren</button>
     </span></td>
   </tr>

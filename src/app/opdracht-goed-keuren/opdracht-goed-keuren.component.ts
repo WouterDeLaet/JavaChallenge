@@ -13,7 +13,6 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   user: User;
   opdrachten$: Opdrachten;
-  opdrachten2$: Opdrachten;
 
   constructor(private apixuService: ApixuService, private authService: AuthService) { }
 
@@ -32,20 +31,33 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
 
   opdrachtGoedkeuren(opdrachtId)
   {
-    const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
-    goedGekeurd.subscribe(data => {
-      console.log(data);
-    });
-    window.location.reload();
+      const goedGekeurd = this.apixuService.opdrachtIndienen(this.user.token, opdrachtId);
+      goedGekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
   }
 
   opdrachtAfkeuren(opdrachtId)
   {
-    const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
-    afgekeurd.subscribe(data => {
-      console.log(data);
-    });
-    window.location.reload();
+    let beslissing = confirm("bent u zeker dat u de opdracht wilt afkeuren?");
+    if(beslissing == true)
+    {
+      const afgekeurd = this.apixuService.opdrachtAfkeuren(this.user.token, opdrachtId);
+      afgekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
+    }
+  }
+
+  puntenToekennen(opdrachtId, punten)
+  {
+      const goedGekeurd = this.apixuService.opdrachtIndienenMetPunten(this.user.token, opdrachtId, punten);
+      goedGekeurd.subscribe(data => {
+        console.log(data);
+      });
+      this.ngOnInit();
   }
 }
 
