@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-6">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded h-100">
 
       <!-- TO DO: goedgekeurde opdrachten van de user - de transacties = saldo -->
       <img class="card-img-top img-fluid card-container" src="https://image.flaticon.com/icons/svg/1255/1255612.svg" alt="Punten">
@@ -14,28 +14,57 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
-      <img class="card-img-top img-fluid card-css" src="https://image.flaticon.com/icons/svg/1139/1139982.svg" alt="Rewards">
-      <div class="card-body">
-        <h5 class="card-title">Rewards</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Genoeg punten gespaard voor een toffe reward?</h6>
-        <a routerLink="/shop" class="card-text btn btn-secondary w-100">Naar de shop!</a>
+
+  <div class="col-sm-6">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+          <img class="card-img-top img-fluid" src="https://image.flaticon.com/icons/svg/1139/1139982.svg" alt="Rewards">
+          <div class="card-body">
+            <h5 class="card-title">Rewards</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Genoeg punten voor een toffe reward?</h6>
+            <a routerLink="/shop" class="card-text btn btn-secondary w-100">Naar de shop!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+          <img class="card-img-top img-fluid" src="https://image.flaticon.com/icons/svg/148/148966.svg" alt="Opdracht">
+          <div class="card-body">
+            <h5 class="card-title">Opdrachten</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Geef hier je voltooide opdracht in!</h6>
+            <a routerLink="/opdracht-registeren" class="card-text btn btn-secondary w-100">Opdracht invullen</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
-      <img class="card-img-top img-fluid card-css" src="https://image.flaticon.com/icons/svg/148/148966.svg" alt="Opdracht">
-      <div class="card-body">
-        <h5 class="card-title">Opdrachten</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Geef hier je voltooide opdracht in!</h6>
-        <a routerLink="/opdracht-registeren" class="card-text btn btn-secondary w-100">Opdracht invullen</a>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
-<div class="col-4" *ngFor="let opdracht of opdrachten; index as i;">
-  <div>{{opdracht.titel}}</div>
-</div>

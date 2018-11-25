@@ -3,6 +3,7 @@
   <tr>
     <th scope="col">Naam van de opdracht</th>
     <th scope="col">Beschrijving</th>
+    <th scope="col">Ingediend door</th>
     <th scope="col"></th>
   </tr>
   </thead>
@@ -10,6 +11,7 @@
   <tr scope="row" *ngFor="let opdracht of opdrachten$">
     <td>{{opdracht.titel | titlecase }}</td>
     <td>{{opdracht.beschrijving }}</td>
+    <td>{{opdracht.userId}}</td>
     <td><span class="btn-group" role="group">
       <button type="button" class="btn btn-secondary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">Goedkeuren</button>
       <button type="button" class="btn btn-secondary" *ngIf="opdracht.titel == 'andere'" routerLink="/opdracht-beheren" routerLinkActive="active">Opdracht toevoegen</button>
