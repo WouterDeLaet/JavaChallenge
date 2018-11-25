@@ -16,8 +16,8 @@ export class DashboardComponent implements OnInit {
   rewards: Reward;
   saldo: number;
 
-  transacties = {};
-  opdrachten = {};
+  transacties = [];
+  opdrachten = [];
 
   constructor(public authService: AuthService, public rewardService: RewardService, private router: Router) { }
   ngOnInit() {

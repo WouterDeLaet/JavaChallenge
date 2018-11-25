@@ -2,11 +2,8 @@
   <div class="col-sm-6">
     <div class="card shadow-sm p-3 mb-5 bg-white rounded h-100">
 
-      <!-- TO DO: goedgekeurde opdrachten van de user - de transacties = saldo -->
       <img class="card-img-top img-fluid card-container" src="https://image.flaticon.com/icons/svg/1255/1255612.svg" alt="Punten">
-
-      <!-- placeholder -->
-      <span class="card-centered text-dark">{{saldo}}</span>
+      <p class="card-centered text-dark">{{saldo}}</p>
 
       <div class="card-body">
         <h5 class="card-title">Mijn punten</h5>
@@ -42,26 +39,25 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="card text-center">
-          <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-              </li>
-            </ul>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+        <table class="table">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">Je opdracht</th>
+            <th scope="col">Datum van de opdracht?</th>
+            <th scope="col">Werd goedgekeurd?</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr scope="row" *ngFor="let opdracht of opdrachten">
+            <td>{{opdracht.titel}}</td>
+            <td>{{opdracht.datumInzending | date: 'dd/MM/yyyy'}}</td>
+            <td>
+              <span *ngIf="opdracht.isGoedgekeurd=='true'">Goedgekeurd!</span>
+              <span *ngIf="opdracht.isGoedgekeurd=='false'">In beoordeling></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
