@@ -1,3 +1,4 @@
+<form>
 <table class="table">
   <thead class="thead-light">
   <tr>
@@ -11,13 +12,16 @@
   <tr scope="row" *ngFor="let opdracht of opdrachten$">
     <td>{{opdracht.titel | titlecase }}</td>
     <td>{{opdracht.beschrijving }}</td>
-    <td>{{opdracht.userId}}</td>
+    <td>{{userbyId$.naam}}</td>
     <td><span class="btn-group" role="group">
       <button type="button" class="btn btn-secondary" (click)="opdrachtGoedkeuren(opdracht._id)" *ngIf="opdracht.titel != 'andere'">Goedkeuren</button>
-        <input *ngIf="opdracht.titel == 'andere'" #punten id="punten" placeholder="aantal punten">
-      <button *ngIf="opdracht.titel == 'andere'" type="button" class="btn btn-secondary" (click)="puntenToekennen(opdracht._id, punten.value)">Punten toekennen</button>
+      <span *ngIf="opdracht.titel == 'andere'" class="input-group-append">
+      <input #punten id="punten" placeholder="aantal punten">
+      <button type="button" class="btn btn-secondary" (click)="puntenToekennen(opdracht._id, punten.value)">Punten toekennen</button>
+      </span>
       <button type="button" class="btn btn-outline-dark" (click)="opdrachtAfkeuren(opdracht._id)">Afkeuren</button>
     </span></td>
   </tr>
   </tbody>
 </table>
+</form>

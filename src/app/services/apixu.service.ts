@@ -11,6 +11,7 @@ export class ApixuService {
 
   readonly ROOT_URL = 'http://localhost:8081/';
   readonly LOGIN_USER = 'users/login';
+  readonly USER = 'users';
   readonly OPDRACHTTYPES = 'opdrachtTypes';
   readonly OPDRACHTEN = 'opdrachten';
 
@@ -22,6 +23,21 @@ export class ApixuService {
       .set('email', data.email)
       .set('wachtwoord', data.password);
     return this.http.post(this.ROOT_URL + this.LOGIN_USER, body.toString(), {headers: {'Content-Type' : 'application/x-www-form-urlencoded'}})
+      .pipe(
+        tap(req => console.log('get-request', req)),
+        catchError(
+          (error) => {
+            console.log(error);
+            alert(error.message);
+            return EMPTY;
+          }),
+        share()
+      );
+  }
+
+  getUserById(token, userId): Observable<any>
+  {
+    return this.http.get(this.ROOT_URL + this.USER + '/' + userId, {headers: {'x-access-token' : token}})
       .pipe(
         tap(req => console.log('get-request', req)),
         catchError(
