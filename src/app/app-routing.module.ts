@@ -12,6 +12,7 @@ import {OpdrachtGoedKeurenComponent} from './opdracht-goed-keuren/opdracht-goed-
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import {OpdrachtToevoegenComponent} from './opdracht-toevoegen/opdracht-toevoegen.component';
+import {RewardsBeherenComponent} from './rewards-beheren/rewards-beheren.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'opdracht-goedkeuren', component: OpdrachtGoedKeurenComponent, canActivate: [AdminGuard]},
   {path: 'opdracht-beheren', component: OpdrachtToevoegenComponent, canActivate: [AdminGuard]},
   {path: 'reward-form', component: RewardFormComponent, canActivate: [AdminGuard]},
+  {path: 'rewards-beheren', component: RewardsBeherenComponent, canActivate: [AdminGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: '404'},
 

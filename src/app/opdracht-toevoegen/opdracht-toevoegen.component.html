@@ -21,9 +21,14 @@
              #aantalPuntenForm="ngModel"
              [(ngModel)]="opdrachtTypeForm.aantalPunten">
     </div>
-    <button type="submit" class="btn btn-secondary" (click)="opdrachtTypeToevoegen(naamForm.value, aantalPuntenForm.value)">
-      Toevoegen
-    </button>
+    <span class="btn-group" role="group">
+      <button type="submit" class="btn btn-secondary" (click)="opdrachtTypeToevoegen(naamForm.value, aantalPuntenForm.value)">
+        Toevoegen
+      </button>
+      <button type="reset" class="btn btn-outline-dark">
+        Resetten
+      </button>
+    </span>
   </div>
 </form>
 <br>
