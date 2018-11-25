@@ -29,11 +29,11 @@ export class ShopComponent implements OnInit {
       this.user = user;
       this.authService.getGoedgekeurdeOpdrachtenForUser(user).subscribe(opdrachten => {
         opdrachten.forEach(element => {
-          this.saldo += element.aantalPunten;
+          this.saldo =   +element.aantalPunten;
         });
         this.authService.getTransactiesForUser(user).subscribe(transacties => {
           transacties.forEach(element => {
-            this.saldo -= element.aantalPunten;
+            this.saldo = -element.aantalPunten;
           });
         });
       });
