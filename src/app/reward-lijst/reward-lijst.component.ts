@@ -9,7 +9,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-reward-lijst',
   templateUrl: './reward-lijst.component.html',
-  styles: []
+  styleUrls: ['../shop/shop.component.scss']
 })
 export class RewardLijstComponent implements OnInit {
   status = '';

@@ -1,34 +1,26 @@
-<div class="row">
-  <div class="col-md-12">
-    <button type="button" (click)="openAddPage()" class="btn btn-primary">Nieuwe reward aanmaken</button>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <table *ngFor="let reward of rewards; index as i;">
-      <tr>
-        <td rowspan="3">
-          <img class="rewardImg" [src]="reward.fotoCode" alt="{{reward.beschrijving}}">
-        </td>
-        <td>
-          {{reward.naam}}
-        </td>
-        <td rowspan="3">
-          <div>
-            <button type="button" (click)="openEditPage(reward._id)" class="btn btn-primary">Reward bewerken</button>
-          </div>
-          <div>
-            <button type="button" (click)="openDeleteModal(i)" class="btn btn-primary">Reward verwijderen</button>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>{{reward.beschrijving}}</td>
-      </tr>
-      <tr>
-        <td>{{reward.aantalPunten}}</td>
-      </tr>
-    </table>
+<h5>Nieuwe reward toevoegen</h5>
+<hr>
+<div><button type="button" (click)="openAddPage()" class="btn btn-secondary">Toevoegen</button></div>
+<br>
+<h5>Overzicht van alle rewards</h5>
+<hr>
+
+<div class="row card-group">
+  <div class="col-4" *ngFor="let reward of rewards; index as i;">
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
+      <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
+      <div class="card-body">
+        <h5 class="card-title">{{reward.naam}}</h5>
+        <h6 class="card-subtitle  mb-2 text-muted">{{reward.aantalPunten}} punten</h6>
+
+        <div class="btn-group d-flex card-text" role="group">
+
+          <button type="button" (click)="openEditPage(reward._id)" class="btn btn-secondary w-100">Bewerken</button>
+          <button type="button" (click)="openDeleteModal(i)" class="btn btn-outline-dark w-100">Verwijderen</button>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -47,3 +39,5 @@
     <button type="button" class="btn btn-secondary" [hidden]="status == 'done'" (click)="deleteReward()">Bevestigen</button>
   </div>
 </ng-template>
+
+

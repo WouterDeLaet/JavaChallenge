@@ -1,27 +1,31 @@
 <div class="row">
-  <div class="col-md-12">
-    {{saldo}}
+  <div class="col-sm-12">
+
+    <ngb-alert type="light" [dismissible]="false">
+      <img src="https://image.flaticon.com/icons/svg/1255/1255612.svg" height="30px" style="float:left; padding-right: 10px;"><h5>Je puntenteller staat op {{saldo}}! Wat zou je graag bestellen?</h5>
+    </ngb-alert>
+
   </div>
-</div>
-<div class="row card-group">
-  <div class="col-4" *ngFor="let reward of rewards; index as i;">
-  <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
-    <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
-    <div class="card-body">
-      <h5 class="card-title">{{reward.naam | titlecase }}</h5>
-      <h6 class="card-subtitle  mb-2 text-muted">{{reward.aantalPunten}} punten</h6>
 
-      <div class="btn-group d-flex card-text" role="group">
+  <div class="row card-group">
+    <div class="col-4" *ngFor="let reward of rewards; index as i;">
+      <div class="card shadow-sm p-3 mb-5 bg-white rounded" >
+        <img class="card-img-top img-fluid" src="{{reward.fotoCode}}" alt="{{reward.naam}}">
+        <div class="card-body">
+          <h5 class="card-title">{{reward.naam}}</h5>
+          <h6 class="card-subtitle  mb-2 text-muted">{{reward.aantalPunten}} punten</h6>
 
-        <button type="button" [disabled]="reward.aantalPunten > saldo" class="card-text btn btn-secondary w-100" (click)="rewardBevestigen(i)">Bestellen</button>
-        <button type="button" class="card-text btn btn-outline-dark mr-2 w-100" placement="bottom"
-                triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
+          <div class="btn-group d-flex card-text" role="group">
 
+            <button type="button" [disabled]="reward.aantalPunten > saldo" class="card-text btn btn-secondary w-100" (click)="rewardBevestigen(i)">Bestellen</button>
+            <button type="button" class="card-text btn btn-outline-dark mr-2 w-100" placement="bottom"
+                    triggers="mouseenter:mouseleave" ngbPopover="{{reward.beschrijving}}">Beschrijving</button>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
 <ng-template  #content let-d="dismiss">
   <div class="modal-header">
