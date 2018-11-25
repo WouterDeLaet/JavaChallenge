@@ -90,7 +90,16 @@ export class ApixuService {
     const date = new Date();
     const body = new HttpParams()
       .set('isGoedgekeurd', 'true')
-      .set('titel', 'true')
+      .set('datumGoedgekeurd', date.toDateString());
+    return this.http.put(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId, body.toString() , {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+        'x-access-token': token}});
+  }
+
+  opdrachtIndienenMetPunten(token, opdrachtId, punten): Observable<any> {
+    const date = new Date();
+    const body = new HttpParams()
+      .set('isGoedgekeurd', 'true')
+      .set('aantalPunten', punten)
       .set('datumGoedgekeurd', date.toDateString());
     return this.http.put(this.ROOT_URL + this.OPDRACHTEN + '/' + opdrachtId, body.toString() , {headers: {'Content-Type' : 'application/x-www-form-urlencoded',
         'x-access-token': token}});

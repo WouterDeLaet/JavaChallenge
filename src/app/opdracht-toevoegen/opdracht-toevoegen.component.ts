@@ -48,23 +48,17 @@ export class OpdrachtToevoegenComponent implements OnInit {
 
   opdrachtTypeBewerke(opdrachtTypeId, naam, aantalPunten)
   {
-    let beslissing = confirm("bent u zeker dat u de opdracht type wilt bewerken?");
-    if(beslissing == true) {
       const opdrachtTypeBewerkt = this.apixuService.opdrachtTypeBewerken(this.user.token, opdrachtTypeId, naam, aantalPunten);
       opdrachtTypeBewerkt.subscribe(data => {
         console.log(data);
       });
       this.ngOnInit();
-    }
   }
 
   opdrachtTypeToevoegen(naam, aantalPunten)
   {
-    let beslissing = confirm("bent u zeker dat u de opdracht type wilt toevoegen?");
-    if(beslissing == true) {
       console.log("submitted data from form: " + naam + ' ' + aantalPunten);
       this.apixuService.opdrachtTypeToevoegen(this.user.token, naam, aantalPunten);
       this.ngOnInit();
-    }
   }
 }
