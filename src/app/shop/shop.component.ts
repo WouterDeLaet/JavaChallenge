@@ -27,21 +27,27 @@ export class ShopComponent implements OnInit {
   ngOnInit() {
     this.authService.userData$.subscribe(user => {
       this.user = user;
-      this.authService.getGoedgekeurdeOpdrachtenForUser(user).subscribe(opdrachten => {
-        opdrachten.forEach(element => {
-          this.saldo =   +element.aantalPunten;
-        });
-        this.authService.getTransactiesForUser(user).subscribe(transacties => {
-          transacties.forEach(element => {
-            this.saldo = -element.aantalPunten;
-          });
-        });
-      });
+      this.getSaldo();
       this.rewardService.getRewards(user).subscribe(result => {
         this.rewards = result;
       });
     });
 
+  }
+
+  // Jens Sels - Ophalen van saldo voor de ingelogde gebruiker
+  getSaldo() {
+    this.authService.getGoedgekeurdeOpdrachtenForUser(this.user).subscribe(opdrachten => {
+      this.saldo = 0;
+      opdrachten.forEach(element => {
+        this.saldo += parseInt(element.aantalPunten, 10);
+      });
+      this.authService.getTransactiesForUser(this.user).subscribe(transacties => {
+        transacties.forEach(element => {
+          this.saldo -= parseInt(element.aantalPunten, 10);
+        });
+      });
+    });
   }
 
   rewardBevestigen(rewardIndex) {
@@ -56,6 +62,7 @@ export class ShopComponent implements OnInit {
       const newTransactie = {'userId': this.user._id, 'rewardId': this.currentReward._id, 'aantalPunten': this.currentReward.aantalPunten };
       this.transactieService.addTransactieForUser(newTransactie, this.user).subscribe(result => {
         this.status = 'Success';
+        this.getSaldo();
       });
     }
   }
