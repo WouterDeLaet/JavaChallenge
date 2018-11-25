@@ -10,3 +10,24 @@
   transform: translate(-50%, -50%);
   font-size: 8vw;
 }
+
+tr {
+  width: 100%;
+  display: inline-table;
+  table-layout: fixed;
+}
+
+table{
+  height:300px;
+  width: 100%;
+  overflow: hidden;
+  position:relative;
+  display: -moz-groupbox;
+}
+
+tbody{
+  overflow-y: scroll;
+  height:150px;
+  width: 100%;
+  position: absolute;
+}

@@ -10,7 +10,7 @@
   </thead>
   <tbody>
   <tr scope="row" *ngFor="let opdracht of opdrachten$">
-    <td>{{opdracht.titel | titlecase }}</td>
+    <td>{{opdracht.titel}}</td>
     <td>{{opdracht.beschrijving }}</td>
     <td>{{userbyId$.naam}}</td>
     <td><span class="btn-group" role="group">
