@@ -33,9 +33,12 @@
            #myDatum="ngModel"
            [(ngModel)]="opdrachten.datumInzending">
   </div>
-  <button type="submit" class="btn btn-secondary" (click)="addOpdracht(registratieForm.value, user._id)">
-    Bevestigen
-  </button>
+
+    <div class="form-group btn-group" role="group">
+      <button type="submit" class="btn btn-secondary"(click)="addOpdracht(registratieForm.value, user._id)">Bevestigen</button>
+      <button type="button"class="btn btn-outline-dark" routerLink="/dashboard">Annuleren</button>
+    </div>
+
   </div>
 </form></div>
 

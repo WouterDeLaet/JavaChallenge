@@ -44,7 +44,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     this.setUserData(null, null);
-    this.router.navigate(['/login']);
+    window.location.reload()
   }
 
   setUserData(user, token) {

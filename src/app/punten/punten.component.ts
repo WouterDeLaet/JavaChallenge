@@ -3,8 +3,8 @@ import {ApixuService} from '../services/apixu.service';
 import {OpdrachtTypes} from '../interfaces/opdracht-types';
 import {User} from '../interfaces/user';
 import {AuthService} from '../services/auth.service';
-import {Opdrachten} from '../interfaces/opdrachten';
 import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-punten',
@@ -29,7 +29,8 @@ export class PuntenComponent implements OnInit {
 
   test: Observable<any>;
 
-  constructor(private apixuService: ApixuService, private authService: AuthService) { }
+  constructor(private apixuService: ApixuService, private authService: AuthService,
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.authService.userData$.subscribe( data => {

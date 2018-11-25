@@ -1,5 +1,7 @@
+<h5>Een reward toevoegen</h5>
+<hr>
 <div class="row">
-  <div class="col-md-12" *ngIf="loading == false">
+  <div class="col-sm-8" *ngIf="loading == false">
     <form #f="ngForm">
       <div class="form-group">
         <label for="naam">Naam:</label>
@@ -13,7 +15,7 @@
       </div>
       <div class="form-group">
         <label for="beschrijving">Beschrijving:</label>
-        <textarea cols="5" rows="20" type="text" id="beschrijving" class="form-control"
+        <textarea  type="text" id="beschrijving" class="form-control"
                required
                   placeholder="Reward beschrijving"
                name="beschrijving"
@@ -38,10 +40,13 @@
                #fotoCode="ngModel"
                [(ngModel)]="reward.fotoCode">
       </div>
-      <div class="form-group">
-        <button type="button" class="btn btn-primary mr-2" [disabled]="f.invalid" (click)="commitReward(f.valid)">Gegevens opslagen</button>
-        <button type="button" class="btn btn-secondary mr-2" routerLink="/dashboardadmin">Annuleren</button>
+      <div class="form-group btn-group" role="group">
+        <button type="button" class="btn btn-secondary" (click)="commitReward(f.valid)">Gegevens opslagen</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/dashboard-admin">Annuleren</button>
       </div>
     </form>
+  </div>
+  <div class="col-sm-4">
+    <img src="https://image.flaticon.com/icons/svg/415/415587.svg" >
   </div>
 </div>

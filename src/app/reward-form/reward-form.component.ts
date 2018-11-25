@@ -4,9 +4,6 @@ import {User} from '../interfaces/user';
 import {RewardService} from '../services/reward.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-reward-form',
   templateUrl: './reward-form.component.html',
@@ -15,7 +12,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class RewardFormComponent implements OnInit {
 
   user: User;
-
   loading = true;
 
   reward = {
