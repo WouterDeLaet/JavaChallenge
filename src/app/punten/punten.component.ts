@@ -27,7 +27,6 @@ export class PuntenComponent implements OnInit {
   datumGoedgekeurd: '',
   };
 
-  test: Observable<any>;
 
   constructor(private apixuService: ApixuService, private authService: AuthService,
               private router: Router, private route: ActivatedRoute) { }
@@ -41,12 +40,6 @@ export class PuntenComponent implements OnInit {
     opdrachtenType$.subscribe(data => {
       console.log(data);
       this.opdrachtTypes = data;
-    });
-
-    const opdrachten$ = this.apixuService.getOpdrachten(this.user.token, false);
-    opdrachten$.subscribe(data => {
-      console.log(data);
-      this.test = data;
     });
   }
 
@@ -71,7 +64,7 @@ export class PuntenComponent implements OnInit {
       aantalPunten = form.titel.aantalPunten;
 
       this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
-      window.location.reload();
+      this.ngOnInit();
     }
   }
 
