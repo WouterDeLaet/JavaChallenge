@@ -28,18 +28,12 @@ export class DashboardComponent implements OnInit {
         this.opdrachten = opdrachten;
         this.saldo = 0;
         opdrachten.forEach(element => {
-          if(parseInt(element.aantalPunten))
-          {
-            this.saldo += parseInt(element.aantalPunten);
-          }
+            this.saldo += parseInt(element.aantalPunten, 10);
         });
         this.authService.getTransactiesForUser(user).subscribe(transacties => {
           this.transacties = transacties;
           transacties.forEach(element => {
-            if(parseInt(element.aantalPunten))
-            {
-              this.saldo -= parseInt(element.aantalPunten);
-            }
+            this.saldo -= parseInt(element.aantalPunten, 10);
           });
         });
       });
