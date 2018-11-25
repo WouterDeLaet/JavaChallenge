@@ -50,11 +50,11 @@ export class PuntenComponent implements OnInit {
     let aantalPunten;
 
     if (form.titel === 'andere') {
-      titel = 'andere';
+      titel = 'Andere';
       opdrachtTypeId = '/';
       aantalPunten = 'Nog te bespreken';
 
-      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
+      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten).subscribe(data => this.router.navigate(['dashboard']));
       window.location.reload();
     } else if (form.titel == null || form.beschrijving === '' || form.datumInzending === '') {
       alert('Gelieve alle velden in te vullen');
@@ -63,7 +63,7 @@ export class PuntenComponent implements OnInit {
       opdrachtTypeId = form.titel._id;
       aantalPunten = form.titel.aantalPunten;
 
-      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
+      this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten).subscribe(data => this.router.navigate(['dashboard']));
       this.ngOnInit();
     }
   }

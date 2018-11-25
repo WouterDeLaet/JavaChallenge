@@ -40,11 +40,15 @@ export class ShopComponent implements OnInit {
     this.authService.getGoedgekeurdeOpdrachtenForUser(this.user).subscribe(opdrachten => {
       this.saldo = 0;
       opdrachten.forEach(element => {
-        this.saldo += parseInt(element.aantalPunten, 10);
+        if (parseInt(element.aantalPunten, 10)) {
+          this.saldo += parseInt(element.aantalPunten, 10);
+        }
       });
       this.authService.getTransactiesForUser(this.user).subscribe(transacties => {
         transacties.forEach(element => {
-          this.saldo -= parseInt(element.aantalPunten, 10);
+          if (parseInt(element.aantalPunten, 10)){
+            this.saldo -= parseInt(element.aantalPunten, 10);
+          }
         });
       });
     });

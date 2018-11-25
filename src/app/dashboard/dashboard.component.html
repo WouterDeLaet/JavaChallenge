@@ -37,33 +37,54 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <h5>Je ingediende opdrachten</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Naam van de opdracht</th>
+        <th scope="col">Datum opdracht</th>
+        <th scope="col">Werd goedgekeurd?</th>
+      </tr>
+      </thead>
+      <tbody class="overflow">
+      <tr scope="row" *ngFor="let opdracht of opdrachten">
+        <td>{{opdracht.titel}}</td>
+        <td>{{opdracht.datumInzending | date: 'dd/MM/yyyy'}}</td>
+        <td>
+          <span *ngIf="opdracht.isGoedgekeurd=='true'">Goedgekeurd voor {{opdracht.aantalPunten}} punten!</span>
+          <span *ngIf="opdracht.isGoedgekeurd=='false'">In beoordeling</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <h5>Je ingediende opdrachten</h5>
-        <hr>
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">Naam van de opdracht</th>
-            <th scope="col">Datum opdracht</th>
-            <th scope="col">Werd goedgekeurd?</th>
-          </tr>
-          </thead>
-          <tbody class="overflow">
-          <tr scope="row" *ngFor="let opdracht of opdrachten">
-            <td>{{opdracht.titel}}</td>
-            <td>{{opdracht.datumInzending | date: 'dd/MM/yyyy'}}</td>
-            <td>
-              <span *ngIf="opdracht.isGoedgekeurd=='true'">Goedgekeurd voor {{opdracht.aantalPunten}} punten!</span>
-              <span *ngIf="opdracht.isGoedgekeurd=='false'">In beoordeling></span>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+  <div class="col-sm-6">
+    <h5>Je gekochte rewards</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Naam van de reward</th>
+        <th scope="col">Datum gekocht</th>
+        <th scope="col">Gekocht voor </th>
+      </tr>
+      </thead>
+      <tbody class="overflow">
+      <tr scope="row" *ngFor="let transactie of transacties">
+        <td *ngIf="transactie.reward">{{transactie.reward.naam}}</td>
+        <td>{{transactie.datum | date: 'dd/MM/yyyy'}}</td>
+        <td>
+          <span>{{transactie.aantalPunten}} punten</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
