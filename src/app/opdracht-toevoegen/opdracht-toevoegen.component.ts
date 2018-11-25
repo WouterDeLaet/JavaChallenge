@@ -23,7 +23,7 @@ export class OpdrachtToevoegenComponent implements OnInit {
   ngOnInit() {
     this.authService.userData$.subscribe( data =>
       {
-        this.user = data
+        this.user = data;
       }
     );
 
