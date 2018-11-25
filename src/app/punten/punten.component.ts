@@ -44,25 +44,21 @@ export class PuntenComponent implements OnInit {
   }
 
   addOpdracht(form, userId) {
+    console.log(form);
     let titel;
     let opdrachtTypeId;
     let aantalPunten;
 
-    if(form.titel == "andere")
-    {
-      titel = "andere";
-      opdrachtTypeId = "/";
-      aantalPunten = "Nog te bespreken";
+    if (form.titel === 'andere') {
+      titel = 'andere';
+      opdrachtTypeId = '/';
+      aantalPunten = 'Nog te bespreken';
 
       this.apixuService.nieuweOpdrachtIndienen(this.user.token, form, userId, titel, opdrachtTypeId, aantalPunten);
-      this.ngOnInit();
-    }
-    else if(form.titel == null || form.beschrijving == "" || form.datumInzending == "")
-    {
-      alert("Gelieve alle velden in te vullen");
-    }
-    else
-    {
+      window.location.reload();
+    } else if (form.titel == null || form.beschrijving === '' || form.datumInzending === '') {
+      alert('Gelieve alle velden in te vullen');
+    } else {
       titel = form.titel.naam;
       opdrachtTypeId = form.titel._id;
       aantalPunten = form.titel.aantalPunten;

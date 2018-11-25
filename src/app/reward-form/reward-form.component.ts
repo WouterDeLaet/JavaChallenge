@@ -29,18 +29,21 @@ export class RewardFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.userData$.subscribe(user => {
+      this.user = user;
       this.route.queryParams.subscribe(params => {
         const id = params['id'] || 0;
         if (id !== 0) {
           this.rewardService.getReward(this.user, id).subscribe( result => {
-            this.reward = result;
-            this.loading = false;
+              this.reward = result;
+              this.loading = false;
             }
           );
         } else {
           this.loading = false;
         }
       });
+    });
 }
 
 
@@ -51,12 +54,14 @@ export class RewardFormComponent implements OnInit {
         this.rewardService.addReward(this.reward, this.user).subscribe(
           data => {
             console.log(data);
+            this.router.navigate(['reward-lijst']);
           }
         );
       } else {
-        this.rewardService.editReward(this.reward, this.user).subscribe(
-          data => console.log(data)
-        );
+        this.rewardService.editReward(this.reward, this.user).subscribe( data => {
+          console.log(data);
+        this.router.navigate(['reward-lijst']);
+      });
       }
     }
   }

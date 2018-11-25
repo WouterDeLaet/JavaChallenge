@@ -19,7 +19,8 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { PermissionComponent } from './permission/permission.component';
 import { OpdrachtGoedKeurenModule } from './opdracht-goed-keuren/opdracht-goed-keuren.module';
 import { OpdrachtToevoegenModule } from './opdracht-toevoegen/opdracht-toevoegen.module';
-import { RewardsBeherenComponent } from './rewards-beheren/rewards-beheren.component';
+import { RewardLijstComponent } from './reward-lijst/reward-lijst.component';
+import { RewardLijstModule } from './reward-lijst/reward-lijst.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { RewardsBeherenComponent } from './rewards-beheren/rewards-beheren.compo
     DashboardComponent,
     DashboardAdminComponent,
     PermissionComponent,
-    RewardsBeherenComponent
+    RewardLijstComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,8 @@ import { RewardsBeherenComponent } from './rewards-beheren/rewards-beheren.compo
     RewardFormModule,
     FormsModule,
     OpdrachtGoedKeurenModule,
-    OpdrachtToevoegenModule
+    OpdrachtToevoegenModule,
+    RewardLijstModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
