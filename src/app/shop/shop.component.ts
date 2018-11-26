@@ -46,7 +46,7 @@ export class ShopComponent implements OnInit {
       });
       this.authService.getTransactiesForUser(this.user).subscribe(transacties => {
         transacties.forEach(element => {
-          if (parseInt(element.aantalPunten, 10)){
+          if (parseInt(element.aantalPunten, 10)) {
             this.saldo -= parseInt(element.aantalPunten, 10);
           }
         });
@@ -61,7 +61,7 @@ export class ShopComponent implements OnInit {
   }
 
   rewardKopen() {
-    if (this.user != null && this.currentReward != null && this.currentReward.aantalPunten < this.saldo) {
+    if (this.user != null && this.currentReward != null && this.currentReward.aantalPunten <= this.saldo) {
       this.status = 'Loading';
       const newTransactie = {'userId': this.user._id, 'rewardId': this.currentReward._id, 'aantalPunten': this.currentReward.aantalPunten };
       this.transactieService.addTransactieForUser(newTransactie, this.user).subscribe(result => {
