@@ -14,7 +14,7 @@
     </ul>
     <ul class="navbar-nav">
       <span class="navbar-text d-md-block d-sm-none" *ngIf="user">
-             Welkom, <span class="username">{{ user.naam }}</span>!
+             Welkom, <span class="username">{{ user.naam | titlecase }}</span>!
       </span>
       <li class="nav-item" *ngIf="!user">
         <a class="nav-link font-weight-bold" routerLink="/login" routerLinkActive="active">Login</a>
