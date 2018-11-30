@@ -41,7 +41,10 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
       console.log(data);
       this.opdrachten$ = data;
       data.forEach(element => {
-        this.getUserById(element.userId);
+        this.getUserById(element.userId).subscribe(
+          data =>
+            element.user = data
+        );
       });
     });
   }
@@ -75,10 +78,7 @@ export class OpdrachtGoedKeurenComponent implements OnInit {
   }
 
   getUserById(userId) {
-    const user$ = this.apixuService.getUserById(this.user.token, userId);
-    user$.subscribe(data => {
-      this.userbyId$ = data;
-    });
+    return this.apixuService.getUserById(this.user.token, userId);
   }
 }
 
